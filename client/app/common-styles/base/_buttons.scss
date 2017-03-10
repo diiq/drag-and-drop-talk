@@ -1,0 +1,102 @@
+.button {
+  appearance: none;
+  background-color: $theme-color;
+  border: 0;
+  border-radius: $base-border-radius;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  line-height: 1;
+  padding: $small-spacing $base-spacing;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color $base-duration $base-timing;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: shade($theme-color-light, 10%);
+    color: #fff;
+    outline: 0;
+    border: 0;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: $theme-color;
+    }
+  }
+
+  &.action {
+    background-color: $action-color;
+    &:hover,
+    &:focus {
+      background-color: shade($action-color, 20%);
+      color: #fff;
+    }
+  }
+
+  &.warn {
+    background-color: $warn-color;
+    &:hover,
+    &:focus {
+      background-color: shade($warn-color, 20%);
+      color: #fff;
+    }
+  }
+
+  &.success {
+    background-color: $success-color;
+    &:hover,
+    &:focus {
+      background-color: shade($success-color, 20%);
+      color: #fff;
+    }
+  }
+
+  &.cancel {
+    background-color: #ccc;
+    &:hover,
+    &:focus {
+      background-color: shade(#ccc, 20%);
+      color: #fff;
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row-reverse;
+
+  .button {
+    display: block;
+    margin-left: 1px;
+  }
+}
+
+button {
+  display: block;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font: inherit;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  &.link {
+    display: inline-block;
+    width: auto;
+  }
+}

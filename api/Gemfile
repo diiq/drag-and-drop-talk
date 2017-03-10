@@ -1,0 +1,48 @@
+source 'https://rubygems.org'
+ruby "2.3.3"
+
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rack-cors'
+
+gem 'pg'
+gem 'order_as_specified'
+
+gem 'puma', '~> 3.0'
+gem 'jbuilder', '~> 2.5'
+gem 'redis', '~> 3.0'
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# User management
+gem "devise", "~> 4.1.1"
+gem "devise_token_auth", git: "https://github.com/lynndylanhurley/devise_token_auth"
+gem 'devise_invitable', '~> 1.7.0'
+
+# Attachments
+gem "aws-sdk"
+gem "paperclip", git: "https://github.com/thoughtbot/paperclip"
+
+gem 'paper_trail'
+
+group :development, :test do
+  gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
+end
+
+group :development do
+  gem 'spring'
+  gem 'listen', '~> 3.0.5'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem "rspec-rails"
+  gem "spring-commands-rspec"
+  gem "factory_girl"
+  gem "timecop"
+end
+
+group :darwin do
+  gem 'rb-fsevent'
+end

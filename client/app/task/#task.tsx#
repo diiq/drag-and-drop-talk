@@ -1,0 +1,17 @@
+export interface TaskJSON {
+  id: String,
+  name: String
+}
+
+export class Task {
+  constructor() {
+
+  }
+}
+
+
+export class TaskService {
+  constructor() {
+
+  }
+}

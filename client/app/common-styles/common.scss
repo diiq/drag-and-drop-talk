@@ -1,0 +1,28 @@
+@import "./imports";
+@import "./base/base";
+
+
+html, body {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+  font-size: 18px;
+  line-height: 1.7;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
+}
+
+h1, h2 {
+  font-family: 'PT Serif', serif;
+  font-size: 30px;
+  line-height: 1.2;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
