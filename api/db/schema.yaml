@@ -17,3 +17,4 @@ Estimate:
 Action:
   actual_time: float
   task_id: uuid
+  verification: string

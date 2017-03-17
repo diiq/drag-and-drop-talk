@@ -17,6 +17,31 @@ h6 {
   margin: 0 0 $small-spacing;
 }
 
+h1,
+h2 {
+  font-weight: 100;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+}
+
+.slide {
+  font-size: 32px;
+  h1 {
+    font-size: 135px;
+  }
+  h2 {
+    font-size: 84px;
+  }
+  h3 {
+    font-size: 52px;
+  }
+}
+
 p {
   margin: 0 0 $small-spacing;
 }

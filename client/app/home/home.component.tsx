@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { StateJSON, StateService } from 'state/state';
+import { config } from 'action/action';
 import { Spinner } from 'spinner/spinner.component';
 import { Welcome } from 'welcome/welcome.component';
 import { MicCheck } from 'mic-check/mic-check.component';
+import { Emojlet } from 'emojlet/emojlet.component';
 
 import * as style from './home.scss';
 
@@ -14,14 +16,27 @@ export class Home extends React.Component<HomeProps, {}> {
   interval: number = 0;
   state: {
     state: StateJSON
+    timeStamp: number
     fetching: boolean
+  } = {
+    state: { name: "Sam", taskID: "ok" },
+    timeStamp: 0,
+    fetching: true
   }
 
   componentWillMount() {
     this.setState({ fetching: true })
     this.interval = setInterval(() => {
       StateService.get().then((state) => {
-        this.setState({ state: state, fetching: false })
+        const newState = {
+          state: state,
+          fetching: false,
+          timeStamp: this.state.timeStamp
+        }
+        if (this.state.state.name !== state.name) {
+          newState.timeStamp = (new Date()).getTime();
+        }
+        this.setState(newState)
       })
     }, 1000)
   }
@@ -30,9 +45,11 @@ export class Home extends React.Component<HomeProps, {}> {
     clearInterval(this.interval);
   }
 
-  componentMap: { [index: string]: JSX.Element } = {
-    "welcome": <Welcome />,
-    "mic_check": <MicCheck />
+  componentMap(name: string): JSX.Element {
+    return {
+      "welcome": <Welcome />,
+      "census": <MicCheck timeStamp={this.state.timeStamp} />
+    }[name];
   }
 
   render() {
@@ -40,9 +57,14 @@ export class Home extends React.Component<HomeProps, {}> {
 
     const state = this.state.state;
 
-    const component = this.componentMap[state.name];
+    const component = this.componentMap(state.name);
 
-    return component;
+    return (
+      <div>
+        {component}
+        {config.verification && <div className={style.verification}>You are <Emojlet /></div>}
+      </div>
+    );
 
   }
 }

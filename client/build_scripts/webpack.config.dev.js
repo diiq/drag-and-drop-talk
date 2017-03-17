@@ -15,7 +15,7 @@ function root(args) {
 var dev = _.merge({}, base, {
   devtool: 'eval-source-map',
   output: {
-    publicPath: 'http://localhost:3000/'
+    publicPath: 'http://localhost:3000/estimation'
   }
 });
 

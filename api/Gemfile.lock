@@ -92,6 +92,7 @@ GEM
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
     ffi (1.9.14)
+    gemoji (3.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -213,6 +214,7 @@ DEPENDENCIES
   devise_token_auth!
   dotenv-rails
   factory_girl
+  gemoji
   jbuilder (~> 2.5)
   listen (~> 3.0.5)
   order_as_specified
@@ -235,4 +237,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

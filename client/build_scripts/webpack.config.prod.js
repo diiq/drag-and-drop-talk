@@ -13,7 +13,7 @@ function root(args) {
 
 var dev = _.merge({}, base, {
   output: {
-    path: root('/build')
+    path: root('/build/estimation')
   }
 });
 

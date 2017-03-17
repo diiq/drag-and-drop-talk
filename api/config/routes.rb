@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'state', controller: :state, action: :get
     delete 'state', controller: :state, action: :delete
 
-    resources :actions, only: [:create, :index]
+    resources :actions, only: [:create, :index, :show]
     resources :estimates, only: [:create, :update, :index]
   end
 end

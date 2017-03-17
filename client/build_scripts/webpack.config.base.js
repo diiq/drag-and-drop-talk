@@ -9,7 +9,7 @@ module.exports = {
   ],
 
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/build/estimation',
     filename: 'app.js'
   },
 
@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /\.(jpg|png|svg|gif)$/,
         //        loaders: ['file-loader?name=img/img-[hash:6].[ext]']
-        loaders: ['file-loader?name=img/[name].[ext]']
+        loaders: ['file-loader?name=img/[path][name].[ext]']
       },
 
       // Sass for nesting & functions. css-modules munges all the

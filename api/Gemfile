@@ -25,6 +25,8 @@ gem "paperclip", git: "https://github.com/thoughtbot/paperclip"
 
 gem 'paper_trail'
 
+gem 'gemoji'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'

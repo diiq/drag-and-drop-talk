@@ -18,6 +18,7 @@ class API {
   fetch(method: string, url: string, body?: {}, headers = {}): Promise<any> {
     let request: RequestInit = {
       method,
+      credentials: 'include',
       headers: merge({}, this.defaultHeaders, headers)
     };
     if (method != 'GET' && body) {
@@ -42,51 +43,6 @@ class API {
 
   delete(url: string) {
     return this.fetch('DELETE', url);
-  }
-
-  // Login is treated specially because the request is unauthorized
-  // but the response has auth headers.
-  login(email: string, password: string) {
-    return this.fetch('POST', 'auth/sign_in.json', {
-      email: email,
-      password: password
-    })
-  }
-
-  // need method for logout
-  logout() {
-    return this.fetch('DELETE', 'auth/sign_out.json')
-      .then((response: Response) => {
-        this.forgetAuthHeaders();
-        return response;
-      })
-  }
-
-  // need method for storing/replacing current headers.
-  storeAuthHeaders(headers: Headers) {
-    if (!headers.get('access-token')) return;
-    if (parseInt(headers.get('expiry')) <
-      parseInt(localStorage.getItem('trajectoryExpiry'))) return;
-
-    localStorage.setItem('trajectoryUid', headers.get('uid'));
-    localStorage.setItem('trajectoryClient', headers.get('client'));
-    localStorage.setItem('trajectoryToken', headers.get('access-token'));
-    localStorage.setItem('trajectoryExpiry', headers.get('expiry'));
-  }
-
-  forgetAuthHeaders() {
-    localStorage.removeItem('trajectoryUid');
-    localStorage.removeItem('trajectoryClient');
-    localStorage.removeItem('trajectoryToken');
-    localStorage.removeItem('trajectoryExpiry');
-  }
-
-  getAuthHeaders() {
-    return merge({}, this.defaultHeaders, {
-      'uid': localStorage.getItem('trajectoryUid'),
-      'client': localStorage.getItem('trajectoryClient'),
-      'access-token': localStorage.getItem('trajectoryToken'),
-    })
   }
 }
 

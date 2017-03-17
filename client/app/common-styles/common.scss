@@ -2,10 +2,12 @@
 @import "./base/base";
 
 
-html, body {
+body {
   padding: 0;
   margin: 0;
   border: 0;
+  height: 100%;
+  font-size: 60px;
 }
 
 * {
@@ -15,14 +17,95 @@ html, body {
 body {
   font-size: 18px;
   line-height: 1.7;
-  font-family: 'Open Sans', sans-serif;
   background-color: #fff;
 }
 
 h1, h2 {
-  font-family: 'PT Serif', serif;
   font-size: 30px;
   line-height: 1.2;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+}
+
+
+.slide {
+  height: 100%;
+  padding: 30px;
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+}
+
+.takehome {
+  background-color: red;
+  color: #fff;
+  font-size: 40px;
+
+  .content {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.basic-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .title {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+
+    h1, h2 {
+      margin-top: auto;
+      margin-bottom: 40px;
+    }
+  }
+
+  .content {
+    flex: 1 1 50%;
+    max-width: 85%;
+  }
+}
+
+.two-columns {
+  max-width: 85%;
+  margin: 0 auto 5%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  > div {
+    flex: 1 1 50%;
+    margin: 0 30px;
+  }
+
+  > :first-child {
+    text-align: right;
+  }
+}
+
+#brim-mask {
+  pointer-events: none;
+  background-color: #000;
+  color: #fff;
+  display: none;
+}
+
+#paused {
+  display: none;
+}
+
+#brim-main {
+  height: 100%;
+  > div {
+    height: 100%;
+  }
+}
+
+.connection-message {
+  margin-top: 100px;
+  text-align: center;
 }

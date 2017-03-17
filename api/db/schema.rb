@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "actions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.float "actual_time"
     t.uuid "task_id"
+    t.string "verification"
     t.index ["id"], name: "index_id_on_actions", unique: true, using: :btree
   end
 end

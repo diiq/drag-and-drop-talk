@@ -20,7 +20,7 @@ app.use(devMiddleware(compiler, {
 
 app.use(hotMiddleware(compiler));
 
-app.get('/index.html', function (req, res) {
+app.get('/estimation/index.html', function (req, res) {
   res.sendFile(path.join(__dirname, '../app/index.html'));
 });
 

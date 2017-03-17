@@ -1,5 +1,3 @@
-import 'style-loader!css-loader!sass-loader!./common-styles/common.scss';
-
 import * as React from 'react';
 // import * as style from './app.scss';
 import { Router } from 'react-router';
