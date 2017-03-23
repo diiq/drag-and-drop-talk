@@ -30,7 +30,7 @@ export class Presentation extends React.Component<PresentationProps, {}> {
   }
 
   gotoSlide(slide: number) {
-    StateService.set(slides[slide].state).then(() => {
+    StateService.set(slides[slide].state, slides[slide].taskID).then(() => {
       this.setState({
         slideIndex: slide,
         fetching: false
@@ -53,7 +53,7 @@ export class Presentation extends React.Component<PresentationProps, {}> {
 
     const componentClass = state.component;
     const args = state.arguments;
-    args.taskID = state.taskID;
+    args['taskID'] = state.taskID;
     const component = React.createElement(componentClass, args)
 
     return <div tabIndex={0} style={{ height: "100%" }}>

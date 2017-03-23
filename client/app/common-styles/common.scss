@@ -87,25 +87,26 @@ h1, h2 {
   }
 }
 
-#brim-mask {
-  pointer-events: none;
-  background-color: #000;
-  color: #fff;
-  display: none;
-}
-
-#paused {
-  display: none;
-}
-
-#brim-main {
+#application {
   height: 100%;
   > div {
     height: 100%;
   }
 }
 
-.connection-message {
-  margin-top: 100px;
+.two-choices {
+  height: calc(100vh - 145px);
+  padding: 15px;
+  button {
+    height: 50%;
+    margin-bottom: 15px;
+  }
+}
+
+.waiting {
   text-align: center;
+  padding: 100px 15px;
+  p {
+    margin: 15px 0 0;
+  }
 }

@@ -7,14 +7,18 @@ Task:
   name: string, non-null
   description: json
 
+Person:
+  emoji: string
+
 Estimate:
   type: string
   mode: float
   extreme: float
   rationale: string
   task_id: uuid
+  person_id: uuid
 
 Action:
   actual_time: float
   task_id: uuid
-  verification: string
+  person_id: uuid

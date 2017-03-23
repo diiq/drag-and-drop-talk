@@ -10,7 +10,7 @@ import { App } from 'app.component';
 
 function render() {
   let App = require('app.component').App;
-  const container = document.getElementById('brim-main');
+  const container = document.getElementById('application');
   ReactDOM.render(
     <AppContainer>
       <App />
@@ -19,30 +19,7 @@ function render() {
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {
-
   render();
-
-  var scream,
-    brim;
-
-  if ((platform.os.family == 'iOS' && parseInt(platform.os.version, 10) > 8 || platform.ua.indexOf('like Mac OS X') != -1) && !navigator.userAgent.match('CriOS')) {
-    scream = gajus.Scream({
-      width: {
-        portrait: 320,
-        landscape: 568
-      }
-    });
-
-    brim = gajus.Brim({
-      viewport: scream
-    });
-
-    brim.on('viewchange', function (e) {
-      if (e.viewName == "minimal")
-        document.getElementById('paused').style.display = "block";
-
-    });
-  }
 });
 
 

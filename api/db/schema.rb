@@ -31,19 +31,25 @@ ActiveRecord::Schema.define(version: 5) do
     t.index ["id"], name: "index_id_on_tasks", unique: true, using: :btree
   end
 
+  create_table "people", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "emoji"
+    t.index ["id"], name: "index_id_on_people", unique: true, using: :btree
+  end
+
   create_table "estimates", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "type"
     t.float "mode"
     t.float "extreme"
     t.string "rationale"
     t.uuid "task_id"
+    t.uuid "person_id"
     t.index ["id"], name: "index_id_on_estimates", unique: true, using: :btree
   end
 
   create_table "actions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.float "actual_time"
     t.uuid "task_id"
-    t.string "verification"
+    t.uuid "person_id"
     t.index ["id"], name: "index_id_on_actions", unique: true, using: :btree
   end
 end

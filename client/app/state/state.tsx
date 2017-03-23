@@ -11,7 +11,7 @@ export const StateService = new class {
     return API.get('state');
   }
 
-  set(name: string): Promise<StateJSON> {
-    return API.post('state', { name: name });
+  set(name: string, taskID: string): Promise<StateJSON> {
+    return API.post('state', { name: name, task_id: taskID });
   }
 }();

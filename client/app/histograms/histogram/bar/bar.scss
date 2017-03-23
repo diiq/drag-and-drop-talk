@@ -1,0 +1,20 @@
+@import '~common-styles/imports';
+
+.bar {
+  fill: tint($theme-color-light, 10%);
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  fill: none;
+}
+
+:global(.estimate) {
+  .bar {
+    fill: none;
+  }
+
+  .dot {
+    fill: $theme-color;
+  }
+}

@@ -1,36 +1,43 @@
 import * as React from 'react';
-import { ActionJSON, ActionService } from 'action/action';
+import { ActionJSON, ActionService, config } from 'action/action';
 import { Thanks } from 'thanks/thanks.component';
 import { Spinner } from 'spinner/spinner.component';
+import { Waiting } from 'home/waiting/waiting.component';
 
 //import * as style from './mic-check.scss';
 
-export interface MicCheckProps { timeStamp: number };
+export interface MicCheckProps { taskID: string };
 
 export class MicCheck extends React.Component<MicCheckProps, {}> {
   state: {
     action?: ActionJSON
-  } = {}
+    connecting: boolean
+  } = { connecting: false }
 
   time() {
-    return (new Date()).getTime() - this.props.timeStamp;
+    return (new Date()).getTime();
   }
 
-  componentWillMount() {
-    ActionService.create("446ed2be-6665-44ae-b48c-de41695acbb6", this.time()).then(
-      action => { this.setState({ action: action }) }
+  connect = () => {
+    this.setState({ connecting: true });
+    ActionService.create(this.props.taskID, this.time()).then(
+      action => { this.setState({ action: action, connecting: false }) }
     )
   }
 
   render() {
-    if (this.state.action) {
+    if (config.emoji) {
       return (
-        <div>
-          <Thanks />
-        </div>
+        <Waiting />
+      );
+    } else if (this.state.connecting) {
+      return (
+        <Spinner />
       );
     } else {
-      return <Spinner />
+      return <div className="two-choices">
+        <button onClick={this.connect} className="button action" style={{ display: "block", borderRadius: "100px", width: "200px", height: "200px", margin: "50px auto" }}>Connect!</button>
+      </div >
     }
   }
 }

@@ -31,7 +31,7 @@ export class Census extends React.Component<CensusProps, {}> {
   }
 
   uniqueActions() {
-    return this.state.actions.filter((f, i) => this.state.actions.findIndex(g => f.verification === g.verification) === i);
+    return this.state.actions.filter((f, i) => this.state.actions.findIndex(g => f.person_id === g.person_id) === i);
   }
 
   render() {
@@ -45,7 +45,7 @@ export class Census extends React.Component<CensusProps, {}> {
           <div className={style.connected} >
             <div className={style.spinnerBox}><Spinner /></div>
             <div>
-              {this.uniqueActions().map((a, i) => <Emojlet url={a.verification} />)}
+        {this.uniqueActions().map((a, i) => <Emojlet key={i} url={a.emoji} />)}
             </div >
           </div>
         </div>
