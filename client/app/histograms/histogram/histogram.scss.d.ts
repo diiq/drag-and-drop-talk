@@ -1,1 +1,1 @@
-export const histogram: string;
+

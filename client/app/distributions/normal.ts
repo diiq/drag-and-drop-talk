@@ -13,7 +13,7 @@ export class Normal extends Distribution {
   constructor(
     public mode: number,
     public extreme: number,
-    public samples = 10000) {
+    public samples = 100000) {
     super()
   }
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
-//import * as style from './one-number-estimate.scss';
 import { EstimateJSON, EstimateService } from 'estimate/estimate';
-export interface OneNumberEstimateProps { taskID: string };
 import { Thanks } from 'thanks/thanks.component';
+
+export interface OneNumberEstimateProps { taskID: string };
+
 
 export class OneNumberEstimate extends React.Component<OneNumberEstimateProps, {}> {
   input: HTMLInputElement
@@ -10,13 +11,13 @@ export class OneNumberEstimate extends React.Component<OneNumberEstimateProps, {
     done: false
   }
 
-  done = () => {
+  done = (e: any) => {
+    e.preventDefault();
     const mode = parseFloat(this.input.value);
     EstimateService.create(this.props.taskID, mode, 0).then(
       estimate => { this.setState({ done: true }); }
     )
   }
-
 
   render() {
     if (this.state.done) {
@@ -28,11 +29,15 @@ export class OneNumberEstimate extends React.Component<OneNumberEstimateProps, {
     } else {
       return (
         <div style={{ padding: "20px" }}>
-          <p>How long do you think it will take you, in seconds?</p>
-          <input style={{ padding: "12px 7.5px" }}
-            type="number"
-            ref={(r) => this.input = r} />
-          <button onClick={this.done} className="button action">Done!</button>
+          <form onSubmit={this.done}>
+            <label>
+              How long do you think it will take you, in seconds?
+              <input style={{ padding: "12px 7.5px" }}
+                type="number"
+                ref={(r) => this.input = r} />
+            </label>
+            <button onClick={this.done} className="button action">Done!</button>
+          </form>
         </div>
       );
     }

@@ -36,8 +36,8 @@ export class DistributionHistogram extends React.Component<DistributionHistogram
   yScale: ScaleLinear<number, number>;
   // We need a little space on the sides and bottom of the svg in order
   // to draw the axis. These numbers, in pixels, define that space.
-  sideMargin = 5;
-  bottomMargin = 18;
+  sideMargin = 15;
+  bottomMargin = 25;
   topMargin = 50;
 
   distribution() {

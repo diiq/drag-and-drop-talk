@@ -29,7 +29,7 @@ export class Distribution {
     const maxVal = Math.ceil(max(this.values()));
     const valBinner = histogram()
       .domain([0, maxVal])
-      .thresholds(maxVal);
+      .thresholds(maxVal / 5);
 
     return this.memoDailyCounts = valBinner(this.values()).map((d: Bin<number, number>) => d.length);
   }

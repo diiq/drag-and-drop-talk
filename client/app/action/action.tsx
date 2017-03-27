@@ -15,7 +15,7 @@ export const config: {
 
 export const ActionService = new class {
   create(task_id: string, milliseconds: number): Promise<ActionJSON> {
-    return API.post('actions', { task_id: task_id, actual_time: milliseconds }).then(
+    return API.post('actions', { task_id: task_id, actual_time: milliseconds / 1000 }).then(
       val => {
         config.emoji = val.emoji;
         return val

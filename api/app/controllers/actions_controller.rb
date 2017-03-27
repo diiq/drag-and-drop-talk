@@ -1,3 +1,5 @@
+require_relative '../../lib/emoji_service.rb'
+
 class ActionsController < ApplicationController
   respond_to :json
 

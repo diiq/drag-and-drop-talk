@@ -4,6 +4,7 @@ import { StateService } from 'state/state';
 import { Emojlet } from 'emojlet/emojlet.component';
 import { Spinner } from 'spinner/spinner.component';
 import * as style from './census.scss';
+import poll from 'poll';
 
 export interface CensusProps { title: JSX.Element, question: JSX.Element, taskID: string };
 
@@ -14,20 +15,20 @@ export class Census extends React.Component<CensusProps, {}> {
     actions: []
   }
 
-  interval = 0
+  interval?: () => void
 
   componentWillMount() {
-    this.interval = setInterval(() => {
-      ActionService.list(this.props.taskID).then((actions) => {
+    this.interval = poll(() => {
+      return ActionService.list(this.props.taskID).then((actions) => {
         this.setState({
           actions: actions,
         })
       })
-    }, 1000)
+    })
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    this.interval();
   }
 
   uniqueActions() {
@@ -45,7 +46,7 @@ export class Census extends React.Component<CensusProps, {}> {
           <div className={style.connected} >
             <div className={style.spinnerBox}><Spinner /></div>
             <div>
-        {this.uniqueActions().map((a, i) => <Emojlet key={i} url={a.emoji} />)}
+              {this.uniqueActions().map((a, i) => <Emojlet key={i} url={a.emoji} />)}
             </div >
           </div>
         </div>

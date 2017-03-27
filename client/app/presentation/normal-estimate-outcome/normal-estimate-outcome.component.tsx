@@ -4,6 +4,7 @@ import { ActionService, ActionJSON } from 'action/action';
 import { SampledDistribution } from 'distributions/sampled-distribution';
 import { Normal } from 'distributions/normal';
 import { EstimateAndOutcomeHistogram } from 'histograms/estimate-and-outcome-histogram/estimate-and-outcome-histogram.component';
+import poll from 'poll';
 //import * as style from './normal-estimate-outcome.scss';
 
 export interface NormalEstimateOutcomeProps { taskID: string, text: string };
@@ -16,31 +17,30 @@ export class NormalEstimateOutcome extends React.Component<NormalEstimateOutcome
     estimateDistribution: new Normal(2, 5),
     outcomeDistribution: new SampledDistribution([1]),
   }
-  interval = 0
+  interval?: () => void
 
   componentWillMount() {
     EstimateService.list(this.props.taskID).then((estimates) => {
-      const es = [{ mode: 5, extreme: 12 }, { mode: 6, extreme: 10 }]
-      const mode = es.map(e => e.mode).reduce((a, b) => a + b) / es.length;
-      const extreme = es.map(e => e.extreme).reduce((a, b) => a + b) / es.length;
+      const mode = estimates.map(e => e.mode).reduce((a, b) => a + b) / estimates.length;
+      const extreme = estimates.map(e => e.extreme).reduce((a, b) => a + b) / estimates.length;
       const distribution = new Normal(mode, extreme)
       this.setState({
         estimateDistribution: distribution
       })
     });
 
-    this.interval = setInterval(() => {
-      ActionService.list(this.props.taskID).then((actions) => {
-        const numbers = actions.map(a => a.actual_time / 1000);
+    this.interval = poll(() => {
+      return ActionService.list(this.props.taskID).then((actions) => {
+        const numbers = actions.map(a => a.actual_time);
         this.setState({
           outcomeDistribution: new SampledDistribution(numbers)
         })
       })
-    }, 1000)
+    })
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    this.interval();
   }
 
   render() {

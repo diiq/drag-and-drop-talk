@@ -6,8 +6,12 @@ import { Spinner } from 'spinner/spinner.component';
 import { MicCheck } from 'mic-check/mic-check.component';
 import { Census } from 'home/census/census.component';
 import { OneNumberEstimate } from 'home/one-number-estimate/one-number-estimate.component';
+import { TwoNumberEstimate } from 'home/two-number-estimate/two-number-estimate.component';
+import { TypingAction } from 'home/typing-action/typing-action.component';
+import { SimpleAction } from 'home/simple-action/simple-action.component';
 import { Waiting } from 'home/waiting/waiting.component';
 import { Emojlet } from 'emojlet/emojlet.component';
+import poll from 'poll';
 
 import * as style from './home.scss';
 
@@ -15,21 +19,21 @@ export interface HomeProps { name: string };
 
 @observer
 export class Home extends React.Component<HomeProps, {}> {
-  interval: number = 0;
+  interval?: () => void
   state: {
     state: StateJSON
     timeStamp: number
     fetching: boolean
   } = {
-    state: { name: "Sam", taskID: "ok" },
+    state: { name: "Sam", task_id: "ok" },
     timeStamp: 0,
     fetching: true
   }
 
   componentWillMount() {
     this.setState({ fetching: true })
-    this.interval = setInterval(() => {
-      StateService.get().then((state) => {
+    this.interval = poll(() => {
+      return StateService.get().then((state) => {
         const newState = {
           state: state,
           fetching: false,
@@ -40,11 +44,11 @@ export class Home extends React.Component<HomeProps, {}> {
         }
         this.setState(newState)
       })
-    }, 1000)
+    })
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    this.interval();
   }
 
   componentMap(name: string, task: string): JSX.Element {
@@ -53,7 +57,10 @@ export class Home extends React.Component<HomeProps, {}> {
       "mic-check": <MicCheck taskID={task} />,
       "census": <Census taskID={task} />,
       "one-number-estimate": <OneNumberEstimate taskID={task} />,
-      "waiting": <Waiting name="waiting" />
+      "two-number-estimate": <TwoNumberEstimate taskID={task} />,
+      "typing-action": <TypingAction taskID={task} />,
+      "simple-action": <SimpleAction taskID={task} />,
+      "waiting": <Waiting />
     }[name];
   }
 
@@ -67,7 +74,10 @@ export class Home extends React.Component<HomeProps, {}> {
     return (
       <div>
         {component}
-        {config.emoji && state.name !== "waiting" && state.name !== "mic-check" && <div className={style.verification}>You are <Emojlet /></div>}
+        {config.emoji &&
+          state.name !== "waiting" &&
+          state.name !== "mic-check" &&
+          <div className={style.verification}>You are <Emojlet /></div>}
       </div>
     );
 

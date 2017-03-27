@@ -6,7 +6,7 @@ import { sample } from 'lodash';
 
 interface Estimate {
   mode: number,
-  ninety: number
+  extreme: number
 }
 
 const memo: { [id: string]: CompoundLogNormal } = {}
@@ -24,7 +24,7 @@ export class CompoundLogNormal extends Distribution {
     public samples = 10000) {
     super();
 
-    const sig = estimates.map(e => `${e.mode},${e.ninety}`).join(';') + `s:${this.samples}`;
+    const sig = estimates.map(e => `${e.mode},${e.extreme}`).join(';') + `s:${this.samples}`;
     if (memo[sig]) return memo[sig];
 
     this.estimates = estimates.slice();
@@ -35,7 +35,7 @@ export class CompoundLogNormal extends Distribution {
     return () => {
       if (this.estimates.length == 0) return 0;
       const estimate = sample(this.estimates);
-      return logNormal(estimate.mode, estimate.ninety)();
+      return logNormal(estimate.mode, estimate.extreme)();
     }
   }
 }

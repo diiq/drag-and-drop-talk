@@ -1,11 +1,8 @@
 
 State:
   name: string, non-null, indexed
-  task_id: uuid
-
-Task:
-  name: string, non-null
-  description: json
+  text: string
+  task_id: string
 
 Person:
   emoji: string
@@ -15,10 +12,10 @@ Estimate:
   mode: float
   extreme: float
   rationale: string
-  task_id: uuid
+  task_id: string
   person_id: uuid
 
 Action:
   actual_time: float
-  task_id: uuid
+  task_id: string
   person_id: uuid

@@ -23,6 +23,6 @@ test:
 
 production:
   <<: *default
-  database: trajectory
-  username: trajectory
-  password: <%= ENV['TRAJECTORY_DATABASE_PASSWORD'] %>
+  database:
+  username:
+  password:

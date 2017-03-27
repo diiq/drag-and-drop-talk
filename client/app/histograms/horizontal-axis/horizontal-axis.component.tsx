@@ -34,10 +34,10 @@ export class HorizontalAxis extends React.Component<HorizontalAxisProps, {}> {
   }
 
   tickFormat(d: number) {
-    let nth = this.max() < 60 ? 5 : 20;
+    let nth = this.max() < 20 ? 1 : 5;
     // Label every 5th business day (week) or 20th (month) if scale is large.
     if (d % nth == 0)
-      return (d + (this.props.fakeout || 0)).toString()
+      return (d * 5 + (this.props.fakeout || 0)).toString()
     else
       return ""
   }

@@ -2,7 +2,7 @@ import API from 'api/api';
 
 
 export interface StateJSON {
-  taskID: string,
+  task_id: string,
   name: string
 }
 

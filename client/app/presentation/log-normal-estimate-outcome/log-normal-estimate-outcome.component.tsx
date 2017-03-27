@@ -2,35 +2,35 @@ import * as React from 'react';
 import { EstimateService, EstimateJSON } from 'estimate/estimate';
 import { ActionService, ActionJSON } from 'action/action';
 import { SampledDistribution } from 'distributions/sampled-distribution';
+import { CompoundLogNormal } from 'distributions/compound-log-normal';
 import { EstimateAndOutcomeHistogram } from 'histograms/estimate-and-outcome-histogram/estimate-and-outcome-histogram.component';
 import poll from 'poll';
 
-//import * as style from './single-estimate-histogram.scss';
+//import * as style from './normal-estimate-outcome.scss';
 
-export interface SingleEstimateOutcomeProps { taskID: string, text: JSX.Element };
+export interface LogNormalEstimateOutcomeProps { taskID: string, text: string };
 
-export class SingleEstimateOutcome extends React.Component<SingleEstimateOutcomeProps, {}> {
+export class LogNormalEstimateOutcome extends React.Component<LogNormalEstimateOutcomeProps, {}> {
   state: {
-    estimateDistribution: SampledDistribution,
+    estimateDistribution: CompoundLogNormal,
     outcomeDistribution: SampledDistribution,
   } = {
-    estimateDistribution: new SampledDistribution([1]),
-    outcomeDistribution: new SampledDistribution([1]),
+    estimateDistribution: new CompoundLogNormal([{ mode: 2, extreme: 5 }]),
+    outcomeDistribution: new SampledDistribution([]),
   }
   interval?: () => void
 
   componentWillMount() {
     EstimateService.list(this.props.taskID).then((estimates) => {
-      const numbers = estimates.map(e => e.mode)
-      const average = numbers.reduce((a, b) => a + b) / (numbers.length);
+      const distribution = new CompoundLogNormal(estimates)
       this.setState({
-        estimateDistribution: new SampledDistribution([average])
+        estimateDistribution: distribution
       })
     });
 
     this.interval = poll(() => {
       return ActionService.list(this.props.taskID).then((actions) => {
-        const numbers = actions.map(a => a.actual_time);
+        const numbers = actions.map(a => a.actual_time / 1000);
         this.setState({
           outcomeDistribution: new SampledDistribution(numbers)
         })

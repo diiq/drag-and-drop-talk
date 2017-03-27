@@ -3,7 +3,7 @@ import { Emojlet } from 'emojlet/emojlet.component';
 
 //import * as style from './waiting.scss';
 
-export interface WaitingProps { name: string };
+export interface WaitingProps { };
 
 export class Waiting extends React.Component<WaitingProps, {}> {
   render() {

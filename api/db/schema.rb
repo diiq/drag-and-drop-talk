@@ -20,15 +20,8 @@ ActiveRecord::Schema.define(version: 5) do
 
   create_table "states", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.uuid "task_id"
-    t.index ["id"], name: "index_id_on_states", unique: true, using: :btree
-    t.index ["name"], name: "index_name_on_states", unique: true, using: :btree
-  end
-
-  create_table "tasks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string "name", null: false
-    t.json "description"
-    t.index ["id"], name: "index_id_on_tasks", unique: true, using: :btree
+    t.string "text"
+    t.string "task_id"
   end
 
   create_table "people", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -41,15 +34,17 @@ ActiveRecord::Schema.define(version: 5) do
     t.float "mode"
     t.float "extreme"
     t.string "rationale"
-    t.uuid "task_id"
+    t.string "task_id"
     t.uuid "person_id"
     t.index ["id"], name: "index_id_on_estimates", unique: true, using: :btree
+    t.index ["task_id"], name: "index_task_id_on_estimates", using: :btree
   end
 
   create_table "actions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.float "actual_time"
-    t.uuid "task_id"
+    t.string "task_id"
     t.uuid "person_id"
     t.index ["id"], name: "index_id_on_actions", unique: true, using: :btree
+    t.index ["task_id"], name: "index_task_id_on_actions", using: :btree
   end
 end
