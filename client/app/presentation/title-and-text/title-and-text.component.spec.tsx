@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as ReactTestUtils from 'react-addons-test-utils';
 import { shallow, ShallowWrapper } from 'enzyme';
 
-import { MicCheck } from './mic-check.component';
+import { TitleAndText } from './title-and-text.component';
 
 describe("StoryDetail", () => {
-  const elt = <MicCheck name="foo" />
+  const elt = <TitleAndText name="foo" />
 
   it("renders", () => {
     pending();
