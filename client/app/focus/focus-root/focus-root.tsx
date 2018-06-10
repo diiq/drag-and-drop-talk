@@ -12,7 +12,7 @@ export interface FocusRootProps { };
 // WARNING: The root context is ALWAYS in scope, and is NOT
 // blocked by opaque contexts!
 ActionContextService.addContext("focus-root", {
-  name: "Vistimo",
+  name: "Root",
   // TODO make a better root help screen
   documentation: "Root help",
   actions: {

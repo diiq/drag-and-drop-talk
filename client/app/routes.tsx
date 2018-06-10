@@ -1,4 +1,4 @@
-import { go, RouteDeclaration } from 'router';
+import { RouteDeclaration } from 'router';
 
 // Components
 import { Presentation } from 'presentation/presentation';

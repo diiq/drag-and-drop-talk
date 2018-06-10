@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { JustText } from 'presentation/just-text/just-text.component';
-import { TitleAndText } from 'presentation/title-and-text/title-and-text.component';
+import { TitleAndText } from 'presentation/title-and-text/title-and-text';
+import { TitleAndBigText } from 'presentation/title-and-big-text/title-and-big-text';
 import { TakeHome } from 'presentation/take-home/take-home.component';
 
 
@@ -15,68 +15,49 @@ const slides: Slide[] = [
   {
     component: TitleAndText,
     arguments: {
-      title: "Welcome",
-      text: <div>Got a phone? Get it on the wifi! Keep it handy &mdash; {"you'll"} need it shortly.<br /><br /> <strong>wifi:</strong> atomic-guest-X.X<br /><strong>password:</strong> greatnotbig</div>
+      title: <div>It’s kind of <br />a drag</div>,
+      text: <div><p>Get out your phone, tablet, or laptop, and visit <strong>talks.sambleckley.com</strong> for live secondary content.</p>
+
+      <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
     },
-    state: "waiting",
-    taskID: ""
   },
 
   {
     component: TitleAndText,
     arguments: {
-      title: "Welcome",
-      text: "I'm Sam Bleckley. I'm a software engineer, designer, and consultant. I like trashy novels and modernist paintings."
+      title: "",
+      text: <div>
+        <p>Sam Bleckley<br />
+        Software Engineer, Designer, and Consultant
+        </p>
+
+      <p><strong>sambleckley.com</strong><br />
+      <strong>sam@sambleckley.com</strong><br />
+      <strong>@diiq</strong> on Twitter</p></div>
     },
-    state: "waiting",
-    taskID: ""
   },
 
   {
-    component: TitleAndText,
+    component: TitleAndBigText,
     arguments: {
-      title: "Get Out Your Microscopes",
-      text: <ol>
-        <li>Look closely at just one part of your process</li>
-        <li>Understand and alter it</li>
-        <li>Watch <s>chaos</s> effects spread to the rest of the process</li>
-      </ol>
+      title: "Problem Statement:",
+      text: "Do drag and drop"
     },
-    state: "waiting",
-    taskID: ""
   },
 
   {
-    component: TakeHome,
+    component: TitleAndBigText,
     arguments: {
-      text: <ol>
-        <li>Look closely at just one part of your process</li>
-        <li>Understand and alter it</li>
-        <li>Watch effects spread to the rest of the process</li>
-      </ol>
+      title: "Solution:",
+      text: "There are, like, a dozen great libraries out there. Use one of those."
     },
-    state: "waiting",
-    taskID: ""
   },
-
   {
-    component: TitleAndText,
+    component: TitleAndBigText,
     arguments: {
-      title: "Who Are You",
-      text: "and what the heck do you want?"
+      title: "Thank you.",
+      text: "If there's any time left I'll take questions."
     },
-    state: "waiting",
-    taskID: ""
-  },
-
-  {
-    component: TitleAndText,
-    arguments: {
-      title: "Thanks!",
-      text: "I've been Sam Bleckley. Contact me at sam@climatum.com; I'd love to hear from you."
-    },
-    state: "contact",
-    taskID: ""
   },
 ];
 
