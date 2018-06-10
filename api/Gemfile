@@ -1,50 +1,45 @@
 source 'https://rubygems.org'
-ruby "2.3.3"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'rack-cors'
+ruby '2.5.1'
 
-gem 'pg'
-gem 'order_as_specified'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.2.0'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3'
+# Use Puma as the app server
+gem 'puma', '~> 3.11'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem 'jbuilder', '~> 2.5'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 
-gem 'puma', '~> 3.0'
-gem 'jbuilder', '~> 2.5'
-gem 'redis', '~> 3.0'
+# Use ActiveStorage variant
+# gem 'mini_magick', '~> 4.8'
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
 
-# User management
-gem "devise", "~> 4.1.1"
-gem "devise_token_auth", git: "https://github.com/lynndylanhurley/devise_token_auth"
-gem 'devise_invitable', '~> 1.7.0'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
-# Attachments
-gem "aws-sdk"
-gem "paperclip", git: "https://github.com/thoughtbot/paperclip"
-
-gem 'paper_trail'
-
-gem 'gemoji'
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+# gem 'rack-cors'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
-  gem 'dotenv-rails'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :test do
-  gem "rspec-rails"
-  gem "spring-commands-rspec"
-  gem "factory_girl"
-  gem "timecop"
-end
 
-group :darwin do
-  gem 'rb-fsevent'
-end
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,17 +1,24 @@
-import * as React from 'react';
-import { Route, IndexRedirect, RouterState } from 'react-router';
+import { go, RouteDeclaration } from 'router';
 
-import { RouteWrapper } from 'route-wrapper.component';
-import { App } from 'app.component';
-import { Home } from 'home/home.component';
-import { Presentation } from 'presentation/presentation.component';
-import API from './api/api';
+// Components
+import { MunsellPageView } from 'munsell-page-view/munsell-page-view';
+import { ColorView } from 'color-view/color-view';
 
+function redirect(loc: string) {
+  return () => {
+    go(loc);
+    return true;
+  };
+}
 
-export default (
-  <Route path="/" component={RouteWrapper}>
-    <IndexRedirect to="/home" />
-    <Route path="/home" component={Home} />
-    <Route path="/presentation/:slide" component={Presentation} />
-  </Route>
-);
+export const routes: RouteDeclaration = {
+  path: '/',
+  children: [
+    { path: 'colors', children: [
+      { path: '*/*/:hue', component: MunsellPageView },
+      { path: ':lightness/:chroma/:hue', component: ColorView },
+      { path: '', preFilter: redirect('/colors/*/*/10')}
+    ]},
+    { path: '', preFilter: redirect('/colors/*/*/10')}
+  ],
+};

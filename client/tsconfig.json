@@ -7,11 +7,12 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "es6", "dom" ],
+    "lib": ["es6", "dom"],
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "jsx": "react",
-    "baseUrl": "./app"
+    "baseUrl": "./app",
+    "noUnusedLocals": true
   },
   "awesomeTypescriptLoaderOptions": {
     "forkCheckerSilent": true

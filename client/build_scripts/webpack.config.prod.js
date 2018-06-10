@@ -1,8 +1,7 @@
 const base = require('./webpack.config.base');
-const _ = require('lodash');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -11,15 +10,29 @@ function root(args) {
   return path.join.apply(path, [ROOT].concat(args));
 }
 
-var dev = _.merge({}, base, {
+var prod = Object.assign({}, base, {
   output: {
-    path: root('/build/estimation')
+    path: root('/build'),
+    filename: 'app.[hash:6].js'
   }
 });
 
-
-dev.plugins.push(
- new webpack.DefinePlugin({PRODUCTION: true})
+prod.plugins.push(
+  new webpack.DefinePlugin({
+    PRODUCTION: true,
+    "process.env": { 
+      NODE_ENV: JSON.stringify("production") 
+    }
+  })
+);
+prod.plugins.unshift(
+  new UglifyJSPlugin({
+    uglifyOptions: {
+      output: {
+        "ascii_only": true
+      }
+    }
+  })
 );
 
-module.exports = dev;
+module.exports = prod;

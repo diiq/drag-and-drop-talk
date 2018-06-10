@@ -1,1 +1,1 @@
-export const apiPath = "https://diiq-estimation-talk.herokuapp.com/api/v1/"
+export const apiPath = "https://digitalpalette.herokuapp.com/v1/"

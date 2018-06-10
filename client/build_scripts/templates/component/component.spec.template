@@ -1,11 +1,10 @@
 import * as React from 'react';
-import * as ReactTestUtils from 'react-addons-test-utils';
 import { shallow, ShallowWrapper } from 'enzyme';
 
-import { {{ pascalCase name }} } from './{{ dashCase name }}.component';
+import { {{ pascalCase name }} } from './{{ dashCase name }}';
 
-describe("StoryDetail", () => {
-  const elt = <{{ pascalCase name }} name="foo" />
+describe("{{ pascalCase name }}", () => {
+  const elt = <{{ pascalCase name }} />
 
   it("renders", () => {
     pending();

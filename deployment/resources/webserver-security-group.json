@@ -1,0 +1,40 @@
+{
+  "WebServerSecurityGroup": {
+    "Type": "AWS::EC2::SecurityGroup",
+    "Properties": {
+      "GroupDescription": "Enable HTTP access locked down to the load balancer + SSH access",
+      "SecurityGroupIngress": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": "80",
+          "ToPort": "80",
+          "SourceSecurityGroupOwnerId": {
+            "Fn::GetAtt": [
+              "ElasticLoadBalancer",
+              "SourceSecurityGroup.OwnerAlias"
+            ]
+          },
+          "SourceSecurityGroupName": {
+            "Fn::GetAtt": [
+              "ElasticLoadBalancer",
+              "SourceSecurityGroup.GroupName"
+            ]
+          }
+        },
+        {
+          "IpProtocol": "tcp",
+          "FromPort": "22",
+          "ToPort": "22",
+          "CidrIp": {
+            "Ref": "SSHLocation"
+          }
+        }
+      ]
+    },
+    "Metadata": {
+      "AWS::CloudFormation::Designer": {
+        "id": "fb37d3b2-86b4-4b55-877c-a547f8b291a5"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const revision = require('child_process').execSync('git rev-parse HEAD').toString().trim()
 
 module.exports = {
   entry: [
@@ -9,7 +9,7 @@ module.exports = {
   ],
 
   output: {
-    path: __dirname + '/build/estimation',
+    path: __dirname + '/build',
     filename: 'app.js'
   },
 
@@ -30,22 +30,18 @@ module.exports = {
       // Image assets are hashed to allow cache-busting on deploy.
       {
         test: /\.(jpg|png|svg|gif)$/,
-        //        loaders: ['file-loader?name=img/img-[hash:6].[ext]']
-        loaders: ['file-loader?name=img/[path][name].[ext]']
+        loaders: ['file-loader?name=img/img-[hash:6].[ext]']
+        //loaders: ['file-loader?name=img/[name].[ext]']
       },
-
-      // Sass for nesting & functions. css-modules munges all the
-      // classnames and puts them in the module's exports (with
-      // typings!) so we can refer to them in our tsx/jsx.
       {
-        test: /\.scss$/,
-        exclude: /common-styles/,
-        loaders: [
-          'style-loader',
-          // 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]}',
-          'typings-for-css-modules-loader?modules&namedExport&camelCase&localIdentName=[name]__[local]___[hash:base64:5]',
-          'sass-loader?sourceMap'
-        ]
+        test: /\.(mp4)$/,
+        loaders: ['file-loader?name=videos/mov-[hash:6].[ext]']
+        //loaders: ['file-loader?name=img/[name].[ext]']
+      },
+      // Font assets
+      {
+        test: /\.(eot|woff|woff2|ttf)$/,
+        loaders: ['file-loader']
       },
       {
         test: /\.css$/,
@@ -65,11 +61,11 @@ module.exports = {
     // This takes the index.html file and injects our scripts.
     new HtmlWebpackPlugin({
       template: './app/index.html',
-      inject: false
+      inject: 'head'
     }),
-
-    new webpack.WatchIgnorePlugin([
-      /\.d\.ts$/
-    ]),
+    new webpack.DefinePlugin({
+      RELEASE: '"'+revision.slice(0, 6)+'"'
+    }),
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
   ]
 };

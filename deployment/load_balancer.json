@@ -1,0 +1,39 @@
+{
+  "ElasticLoadBalancer": {
+    "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "Properties": {
+      "AvailabilityZones": {
+        "Fn::GetAZs": ""
+      },
+      "CrossZone": "true",
+      "LBCookieStickinessPolicy": [
+        {
+          "PolicyName": "CookieBasedPolicy",
+          "CookieExpirationPeriod": "30"
+        }
+      ],
+      "Listeners": [
+        {
+          "LoadBalancerPort": "80",
+          "InstancePort": "80",
+          "Protocol": "HTTP",
+          "PolicyNames": [
+            "CookieBasedPolicy"
+          ]
+        }
+      ],
+      "HealthCheck": {
+        "Target": "HTTP:80/",
+        "HealthyThreshold": "2",
+        "UnhealthyThreshold": "5",
+        "Interval": "10",
+        "Timeout": "5"
+      }
+    },
+    "Metadata": {
+      "AWS::CloudFormation::Designer": {
+        "id": "f3a0a651-1b1a-47ea-bb40-38fa43bfea8c"
+      }
+    }
+  }
+}

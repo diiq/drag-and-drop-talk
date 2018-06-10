@@ -1,3 +1,2 @@
-class State < ActiveRecord::Base
-  belongs_to :task
+class State < ApplicationRecord
 end

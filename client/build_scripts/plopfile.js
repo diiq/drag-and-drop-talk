@@ -2,7 +2,7 @@ module.exports = function(plop) {
   plop.addPrompt('directory', require('inquirer-directory'));
 
 	plop.setGenerator('class', {
-    description: 'A class, to  e.g., to communicate to your API',
+    description: 'A service or model class, to  e.g., to communicate to your API',
     prompts: [{
       type: 'input',
       name: 'name',
@@ -28,7 +28,7 @@ module.exports = function(plop) {
   });
 
   plop.setGenerator('component', {
-    description: 'A component, to  e.g., to communicate to your API',
+    description: 'A component',
     prompts: [{
       type: 'input',
       name: 'name',
@@ -43,18 +43,13 @@ module.exports = function(plop) {
 
     actions: [{
       type: 'add',
-      path: '../{{path}}/{{dashCase name}}/{{dashCase name}}.component.tsx',
+      path: '../{{path}}/{{dashCase name}}/{{dashCase name}}.tsx',
       templateFile: 'templates/component/component.template'
     },
     {
       type: 'add',
-      path: '../{{path}}/{{dashCase name}}/{{dashCase name}}.component.spec.tsx',
+      path: '../{{path}}/{{dashCase name}}/{{dashCase name}}.spec.tsx',
       templateFile: 'templates/component/component.spec.template'
-    },
-    {
-      type: 'add',
-      path: '../{{path}}/{{dashCase name}}/{{dashCase name}}.scss',
-      templateFile: 'templates/component/component.scss'
     }]
   });
 };

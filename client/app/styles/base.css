@@ -1,0 +1,111 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  height: 100%;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+#container, #container > div:first-of-type {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 300;
+}
+@media(max-width: 600px) {
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+ul {
+  padding-left: 25px;
+}
+
+/* IT IS CRITICAL THAT YOU GIVE THINGS VISUAL FOCUS STATES. */
+*:focus {
+  outline: none;
+}
+
+input {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+pre {
+  margin: 0;
+  line-height: 1.4;
+}
+
+pre.public-DraftStyleDefault-pre {
+  font-size: 12px;
+  line-height: 1;
+  padding: 12px;
+  margin: 0;
+  background-color: #f5f5f5;
+}
+
+
+
+/* Fixing the Select styling. Oughter be moved to forms/select */
+
+.Select {
+  margin-top: 6px;
+}
+
+.Select.is-focused .Select-control {
+  border-color: #ddd;
+  outline: none;
+  box-shadow: 0 0 10px rgba(133, 191, 253, 1), 0 0 1px rgba(133, 191, 253, 1), 0 0 0 rgba(133, 191, 253, 1), inset 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.Select .Select-control {
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.Select--multi .Select-value {
+  color: #40749c;
+  border: 1px solid #7396b1;
+  background-color: #dfeafa;
+}
+
+.Select--multi .Select-value-icon {
+  border-right: none;
+  padding: 1px 6px;
+}
+
+.Select--multi .Select-value-label {
+  padding: 2px 5px 2px 0px;
+}
+
+.Select-option.is-focused {
+  background-color: #dfeafa;
+}

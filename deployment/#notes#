@@ -1,0 +1,20 @@
+OK, what do I want?
+
+
+I want an autoscaling group to run a webserver
+I want an (autoscaling group?) to run jobs
+I want a redis server to hold the job queue
+I want a database server with backups 
+I want an S3 bucket to host the site
+I want an S3 bucket for uploading files 
+I want a route53 subdomain
+
+
+I want script(s) that runs on upstart
+I want scripts that run on environment changes
+I want scripts that run on deploy
+
+I want to deploy to s3, runner, and webserver in one go
+
+I want to be able to set environment variables
+
