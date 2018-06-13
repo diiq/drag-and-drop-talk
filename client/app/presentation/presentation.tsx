@@ -7,7 +7,7 @@ import slides from 'slides'
 import { ActionContextService, Action } from 'focus';
 import { Focusable } from 'focus/focusable/focusable';
 import { styles } from 'styles/css';
-
+import { Slide } from 'models/slide';
 
 ActionContextService.addContext("presentation", {
   hidden: true,
@@ -17,8 +17,7 @@ ActionContextService.addContext("presentation", {
       shortDocumentation: "",
       searchTerms: ["next"],
       actOn: (c: Presentation) => {
-        console.log("goo")
-        c.gotoSlide(c.state.slideIndex + 1)
+        c.gotoSlide(Slide.slide + 1)
       },
       defaultKeys: ["ArrowRight", "Space", "Enter"]
     }),
@@ -27,7 +26,7 @@ ActionContextService.addContext("presentation", {
       shortDocumentation: "",
       searchTerms: ["previous"],
       actOn: (c: Presentation) => {
-        c.gotoSlide(c.state.slideIndex - 1)
+        c.gotoSlide(Slide.slide - 1)
       },
       defaultKeys: ["ArrowLeft"]
     })
@@ -43,23 +42,23 @@ export class Presentation extends React.Component<PresentationProps, {}> {
     slideIndex: 0
   }
 
-  currentSlide() { return slides[this.state.slideIndex] }
+  currentSlide() { return slides[Slide.slide] }
 
   gotoSlide(slide: number) {
-    this.setState({slideIndex: Math.max(Math.min(slides.length - 1, slide), 0)})
+    Slide.setSlide(Math.max(Math.min(slides.length - 1, slide), 0))
   }
 
   render() {
     const state = this.currentSlide();
-
-    const componentClass = state.component;
-    const args = state.arguments;
-    args['taskID'] = state.taskID;
-    const component = React.createElement(componentClass, args)
+    if (Slide.slide >= 0) {
+      const componentClass = state.presentationComponent;
+      const args = state.presentationArguments;
+      var component = React.createElement(componentClass, args)
+    }
 
     return <Focusable css={style.slide} context="presentation" contextComponent={this} focused={true}>
-      {this.state.slideIndex < 0 && <Spinner />}
-      {this.state.slideIndex >= 0 && component}
+      {Slide.slide < 0 && <Spinner />}
+      {Slide.slide >= 0 && component}
     </Focusable>;
 
   }

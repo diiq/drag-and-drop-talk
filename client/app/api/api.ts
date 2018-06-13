@@ -1,11 +1,21 @@
 import { apiPath } from 'environments/current';
 import { go } from 'router';
+import * as ActionCable from 'actioncable';
+import { cablePath } from 'environments/current';
+const uuid = require('uuid/v4') as () => string;
 
 class API {
   // Need to set which api url we're going for
   apiURL = apiPath
+  consumerMemo: ActionCable.Cable
   defaultHeaders = {
     'Content-Type': 'application/json'
+  }
+  memoAuthHeaders: {
+    uid: string,
+    client: string
+    'access-token': string
+    expiry: string
   }
 
   fetch(method: string, url: string, body?: {}, headers = {}) {
@@ -60,6 +70,31 @@ class API {
 
   delete(url: string) {
     return this.authFetch('DELETE', url);
+  }
+
+  // Actioncable stuff; if grows to more than 4 methods, move elsewhere
+
+  // UUID this window of this browser, so that we can safely ignore streaming
+  // updates that *we* caused, and so already know about.
+  streamId = uuid();
+
+  // There's only one consumer per browser window, though there might be many
+  // subscriptions.
+  get consumer() {
+    if (!this.consumerMemo) {
+      this.consumerMemo = ActionCable.createConsumer("");
+      this.setCableUrl();
+    }
+    return this.consumerMemo;
+  }
+
+  setCableUrl() {
+    // Do auth here if/when necessary
+    this.consumer['url'] = cablePath;
+  }
+
+  subscribe(props: any, handlers: ActionCable.CreateMixin) {
+    return this.consumer.subscriptions.create(props, handlers);
   }
 }
 
