@@ -2,6 +2,7 @@
 require('font-awesome/css/font-awesome.min.css');
 require('react-select/dist/react-select.css');
 require('styles/base.css');
+var NoSleep = require('nosleep.js')
 
 import * as React from 'react';
 import { routes } from 'routes';
@@ -29,18 +30,31 @@ export class App extends React.Component<AppProps, {}> {
 
   render() {
     if (this.state.error) {
-      return <div {...style.error}><h1>Sorry! Something has gone wrong.</h1><p>An error occurred, and the only way to get back on track is to refresh the page, or return <a href="https://www.vistimo.com">home</a>.</p></div>;
+      return <div {...style.error}><h1>Sorry! Something has gone wrong.</h1><p>An error occurred, and the only way to get back on track is to refresh the page, or return <a href="talks.sambleckley.com">home</a>.</p></div>;
     }
     return (
       <FocusRoot>
         <Helmet>
-          <title>Pigmentor</title>
+          <title>Sam Bleckley is Giving a Talk</title>
         </Helmet>
         <Router routes={routes} notFound={<NotFound />} />
       </FocusRoot>
     );
   }
 }
+
+var noSleep = new NoSleep();
+
+function enableNoSleep() {
+  noSleep.enable();
+  console.log("enable")
+  document.removeEventListener('click', enableNoSleep, false);
+}
+
+// Enable wake lock.
+// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+document.addEventListener('click', enableNoSleep, false);
+
 
 const style = styles({
   error: {

@@ -1,4 +1,4 @@
-import { observable, computed, action } from 'mobx';
+import { observable } from 'mobx';
 import API from 'api/api';
 
 class SlideClass {
@@ -43,7 +43,7 @@ class SlideClass {
   }
 
   subscribe() {
-    this.channel = API.subscribe({ channel: "SlideChannel" }, this.handlers())
+    this.channel = API.subscribe({ channel: "ApplicationCable::SlideChannel" }, this.handlers())
   }
 }
 

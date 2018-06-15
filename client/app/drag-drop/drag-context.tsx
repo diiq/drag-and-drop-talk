@@ -4,13 +4,14 @@ import { object } from 'prop-types';
 import { fastMove, perimeterScroller, framerateLoop } from './utils';
 
 // CSS
-import { styles } from 'styles/css';
+import { styles, Style } from 'styles/css';
 
 export interface DragContextProps {
   contextName: string
   // Scroll something other than body when dragging to edges of screen?
   xScroller?: () => Element
   yScroller?: () => Element
+  css: Style
 };
 
 export interface DragPosition {
@@ -53,7 +54,7 @@ export interface DragManager {
   removeActor(id: string, props: Actor): void
 }
 
-export type DragEvent = React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>;
+export type DragEvent = React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement> | TouchEvent | MouseEvent;
 
 @observer
 export class DragContext extends React.Component<DragContextProps, {}> {
@@ -173,6 +174,7 @@ export class DragContext extends React.Component<DragContextProps, {}> {
   }
 
   move = (e: DragEvent) => {
+    if (!this.state.dragee) return;
     this.setDrageePosition(e);
     if (this.dragStart.done) {
       this.actActors(e);
@@ -183,6 +185,7 @@ export class DragContext extends React.Component<DragContextProps, {}> {
 
   drop = (e: DragEvent) => {
     this.setState({ dragee: null });
+    if (!this.hiddenDragee) return;
     this.hiddenDragee.style.display = this.oldDisplay;
     this.actorsDo('dragStop', [this.monitor, this.richPosition(e)]);
     this.onDrop(this.monitor);
@@ -222,7 +225,7 @@ export class DragContext extends React.Component<DragContextProps, {}> {
     }
   }
 
-  isTouch(e: DragEvent): e is React.TouchEvent<any> {
+  isTouch(e: DragEvent): e is React.TouchEvent<any> | TouchEvent {
     return !!e['touches'];
   }
 
@@ -250,11 +253,11 @@ export class DragContext extends React.Component<DragContextProps, {}> {
   }
 
   setDrageeOffset(e: DragEvent, ref: HTMLDivElement) {
-    //const pos = this.getEventPosition(e);
+    const pos = this.getEventPosition(e);
     const drageeLoc = ref.getBoundingClientRect();
     this.pointerOffset = {
-      x: -drageeLoc.width/2, //drageeLoc.left - pos.x,
-      y: -drageeLoc.height/2 //drageeLoc.top - pos.y
+      x: drageeLoc.left - pos.x,
+      y: drageeLoc.top - pos.y
     }
   }
 
@@ -264,8 +267,12 @@ export class DragContext extends React.Component<DragContextProps, {}> {
 
   render() {
     return (
-      <div>
-        <div onMouseMove={this.move} onTouchMove={this.move}
+      <div {...this.props.css} onMouseLeave={this.drop}>
+        <div onMouseMove={this.move}
+          ref={(r) => {
+            if (!r) return;
+            (r.addEventListener as any)("touchmove", this.move, {passive: false});
+          }}
           onTouchEnd={this.drop} onTouchCancel={this.drop} onMouseUp={this.drop}
           {...style.dragLayer} style={{ pointerEvents: this.state.dragee ? 'all' : 'none' }} >
 

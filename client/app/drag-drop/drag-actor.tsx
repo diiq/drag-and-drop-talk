@@ -5,7 +5,7 @@
 
 import * as React from 'react';
 import { object } from 'prop-types';
-import { DragManager, DragLocation, Actor, DragPosition } from './drag-context';
+import { DragManager, DragLocation, Actor } from './drag-context';
 
 
 // CSS
@@ -15,7 +15,7 @@ export interface DragActorProps {
   contextName: string
   id: any
   fastUpdate?: (location: DragLocation, monitor: any) => void
-  dragStop?: (monitor?: any, position?: DragPosition) => void
+  dragStop?: (monitor?: any, position?: DragLocation) => void
   dragStart?: (monitor: any) => void
   css?: CompiledStyle
   setRef?: (ref: HTMLDivElement) => void

@@ -2,13 +2,13 @@
 import * as React from 'react';
 import { styles } from 'styles/css';
 
-export interface TitleAndTextProps { title: JSX.Element, text: JSX.Element };
+export interface ImageAndTextProps { image: string, text: JSX.Element };
 
-export class TitleAndText extends React.Component<TitleAndTextProps, {}> {
+export class ImageAndText extends React.Component<ImageAndTextProps, {}> {
   render() {
     return (
       <div {...style.slide}>
-        <h1 {...style.title}>{this.props.title}</h1>
+        <img {...style.image} src={this.props.image} />
         <div {...style.text}>
           {this.props.text}
         </div>
@@ -30,11 +30,8 @@ const style = styles({
       padding: 40
     }
   },
-  title: {
-    fontSize: 80,
-    '@media(max-width:600px)': {
-      fontSize: 60
-    }
+  image: {
+    maxHeight: "70%"
   },
   text: {
     fontSize: 30,
