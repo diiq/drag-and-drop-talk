@@ -14,22 +14,19 @@ export interface DragContextProps {
   css: Style
 };
 
-export interface DragPosition {
-  x: number,
-  y: number,
-  left: number,
-  top: number,
-  mouseX: number,
-  mouseY: number,
-}
-
 export interface DragLocation {
-  // Centroid of the dragee
-  x: number, y: number,
-  // top corner of the dragee
-  top: number, left: number,
-  // Actual mouse pointer location
-  mouseX: number, mouseY: number
+  centroid: {
+    x: number,
+    y: number,
+  },
+  topLeft: {
+    x: number,
+    y: number,
+  },
+  mouse: {
+    x: number,
+    y: number
+  }
 }
 
 export interface Actor {
@@ -216,12 +213,18 @@ export class DragContext extends React.Component<DragContextProps, {}> {
     const pos = this.getEventPosition(e);
     this.pointerOffset
     return {
-      x: pos.x + this.pointerOffset.x + drageeSize.width / 2 + this.props.xScroller().scrollLeft,
-      y: pos.y + this.pointerOffset.y + drageeSize.height / 2 + this.props.yScroller().scrollTop,
-      left: pos.x + this.pointerOffset.x,
-      top: pos.y + this.pointerOffset.y,
-      mouseX: pos.x,
-      mouseY: pos.y
+      centroid: {
+        x: pos.x + this.pointerOffset.x + drageeSize.width / 2 + this.props.xScroller().scrollLeft,
+        y: pos.y + this.pointerOffset.y + drageeSize.height / 2 + this.props.yScroller().scrollTop,
+      },
+      topLeft: {
+        x: pos.x + this.pointerOffset.x,
+        y: pos.y + this.pointerOffset.y,
+      },
+      mouse: {
+        x: pos.x,
+        y: pos.y
+      }
     }
   }
 

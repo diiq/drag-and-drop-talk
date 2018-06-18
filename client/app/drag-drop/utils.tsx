@@ -22,7 +22,7 @@ interface Scrollable {
 }
 
 export interface Scroller {
-  scroll(loc: { mouseX: number, mouseY: number }): void
+  scroll(loc: { mouse: {x: number, y: number }}): void
   stop(): void
 }
 
@@ -39,7 +39,7 @@ export function perimeterScroller(xScrollable: Scrollable, yScrollable: Scrollab
 
   return {
     // TODO rewrite this to look more like Timeline scroller
-    scroll(loc: { mouseX: number, mouseY: number }) {
+    scroll(loc: { mouse: {x: number, y: number }}) {
       // Safety valve; if things go borken, we don't want the page stuck in
       // permascroll hell.
       // This is probably hiding a bug on mobile.
@@ -47,8 +47,8 @@ export function perimeterScroller(xScrollable: Scrollable, yScrollable: Scrollab
 
       const acceleration = 0.25;
       const scrollArea = 100;
-      const x = loc.mouseX;
-      const y = loc.mouseY;
+      const x = loc.mouse.x;
+      const y = loc.mouse.y;
       function speedGivenLocation(distanceFromEdge: number) {
         if (distanceFromEdge < scrollArea) {
           return (scrollArea - distanceFromEdge) * acceleration;

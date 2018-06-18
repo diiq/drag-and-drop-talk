@@ -259,7 +259,7 @@ const slides: Slide[] = [
     }
   },
   {
-    presentationComponent: TitleAndText,
+    presentationComponent: TitleAndBigText,
     presentationArguments: {
       title: "Just use HTML5 Drag events",
       text: "...right?"
@@ -380,28 +380,70 @@ const slides: Slide[] = [
     }
   },
   {
-    presentationComponent: TitleAndText,
+    presentationComponent: TitleAndBigText,
     presentationArguments: {
       title: "More complications",
       text: <ul><li>avoiding long-press</li>
-      <li>scroll events are now passive by default</li>
+      <li>scroll events are passive</li>
       <li>jeez</li>
       </ul>
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div>(I <em>told</em> you complications would follow)</div>
+      text: "Building prototypes and observing users are the lub and dub of the same heartbeat; they don't happen strictly once, or in strict order"
+    }
+  },
+  {
+    presentationComponent: TitleAndBigText,
+    presentationArguments: {
+      title: "Dropping",
+      text: <ul><li>where is <del>the beat</del> the dragee?</li>
+      <li>what do we do when it drops?</li>
+      </ul>
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: "The answer to most subtle ux questions is: try it!"
+    }
+  },
+  {
+    presentationComponent: TitleAndBigText,
+    presentationArguments: {
+      title: "Where is it?",
+      text: <ul><li>The top left corner?</li>
+      <li>The centroid?</li>
+      <li>The mouse location?</li>
+      </ul>
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: "...and faster you can try variations, the more refined your eventual choice will be."
+    }
+  },
+  {
+    presentationComponent: TitleAndBigText,
+    presentationArguments: {
+      title: "Where is it?",
+      text: <ul>
+        <li>The top left corner?</li>
+        <li>The centroid?</li>
+        <li>The mouse location?</li>
+      </ul>
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: "This is NOT the Agile Process™; these prototype-test iterations might last 30 minutes."
     }
   },
   {
     presentationComponent: TitleAndText,
     presentationArguments: {
-      title: "More complications",
-      text: <ul><li>avoiding long-press</li>
-      <li>scroll events are now passive by default</li>
-      <li>jeez</li>
-      </ul>
+      title: "Motion",
+      text: ""
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {

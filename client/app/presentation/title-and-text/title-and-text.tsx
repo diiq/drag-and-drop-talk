@@ -37,12 +37,13 @@ const style = styles({
     }
   },
   text: {
-    fontSize: 30,
+    fontSize: 36,
     marginLeft: 'auto',
     textAlign: 'right',
     maxWidth: '70%',
     '@media(max-width:600px)': {
-      maxWidth: '90%'
+      maxWidth: '90%',
+      fontSize: 30,
     }
   }
 })

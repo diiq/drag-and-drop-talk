@@ -86,7 +86,7 @@ ul li:before {
    float: right;
    position: absolute;
    top: 0;
-   right: -10px;
+   right: -20px;
 }
 
 /* Fixing the Select styling. Oughter be moved to forms/select */
