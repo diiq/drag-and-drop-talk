@@ -15,10 +15,7 @@ class SlideClass {
   }
 
   setSlide(i: number) {
-    console.log("setting")
-    API.post('slide.json', { slide: i }).then(() => {
-      console.log("ok")
-    })
+    API.post('slide.json', { slide: i })
   }
 
   // Websocket stuff
@@ -35,7 +32,6 @@ class SlideClass {
       },
       received: (data: { event: string, slide: number }) => {
         if (data.event == "update") {
-          console.log("it happened")
           this.slide = data.slide
         }
       }

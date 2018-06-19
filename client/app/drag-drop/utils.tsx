@@ -22,13 +22,12 @@ interface Scrollable {
 }
 
 export interface Scroller {
-  scroll(loc: { mouse: {x: number, y: number }}): void
+  scroll(loc: { unscrolled: {x: number, y: number }}): void
   stop(): void
 }
 
 export function perimeterScroller(xScrollable: Scrollable, yScrollable: Scrollable): Scroller {
-  // Weird typedef here because of conflicting types. C'mon typsecript. Getcher. Shit. Together.
-  var autoscrollInterval: NodeJS.Timer | number;
+  var autoscrollInterval: NodeJS.Timer;
   function stop() {
     if (autoscrollInterval) {
       clearInterval(autoscrollInterval as NodeJS.Timer);
@@ -39,16 +38,16 @@ export function perimeterScroller(xScrollable: Scrollable, yScrollable: Scrollab
 
   return {
     // TODO rewrite this to look more like Timeline scroller
-    scroll(loc: { mouse: {x: number, y: number }}) {
+    scroll(loc: { unscrolled: {x: number, y: number }}) {
       // Safety valve; if things go borken, we don't want the page stuck in
       // permascroll hell.
       // This is probably hiding a bug on mobile.
       setTimeout(stop, 1000);
 
-      const acceleration = 0.25;
+      const acceleration = 0.175;
       const scrollArea = 100;
-      const x = loc.mouse.x;
-      const y = loc.mouse.y;
+      const x = loc.unscrolled.x;
+      const y = loc.unscrolled.y;
       function speedGivenLocation(distanceFromEdge: number) {
         if (distanceFromEdge < scrollArea) {
           return (scrollArea - distanceFromEdge) * acceleration;
@@ -59,7 +58,7 @@ export function perimeterScroller(xScrollable: Scrollable, yScrollable: Scrollab
       const dx = speedGivenLocation(xScrollable.clientWidth - x) || -speedGivenLocation(x);
 
       if (autoscrollInterval) {
-        clearInterval(autoscrollInterval as NodeJS.Timer);
+        clearInterval(autoscrollInterval);
         autoscrollInterval = null;
       }
 

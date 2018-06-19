@@ -11,7 +11,7 @@ export interface DragContextProps {
   // Scroll something other than body when dragging to edges of screen?
   xScroller?: () => Element
   yScroller?: () => Element
-  css: Style
+  css?: Style
 };
 
 export interface DragLocation {
@@ -24,6 +24,10 @@ export interface DragLocation {
     y: number,
   },
   mouse: {
+    x: number,
+    y: number
+  },
+  unscrolled: {
     x: number,
     y: number
   }
@@ -211,17 +215,22 @@ export class DragContext extends React.Component<DragContextProps, {}> {
   richPosition(e: DragEvent) {
     const drageeSize = this.dragee.getBoundingClientRect();
     const pos = this.getEventPosition(e);
-    this.pointerOffset
+    const scrollTop = this.props.yScroller().scrollTop
+    const scrollLeft = this.props.xScroller().scrollLeft
     return {
       centroid: {
-        x: pos.x + this.pointerOffset.x + drageeSize.width / 2 + this.props.xScroller().scrollLeft,
-        y: pos.y + this.pointerOffset.y + drageeSize.height / 2 + this.props.yScroller().scrollTop,
+        x: pos.x + this.pointerOffset.x + drageeSize.width / 2 + scrollLeft,
+        y: pos.y + this.pointerOffset.y + drageeSize.height / 2 + scrollTop,
       },
       topLeft: {
-        x: pos.x + this.pointerOffset.x,
-        y: pos.y + this.pointerOffset.y,
+        x: pos.x + this.pointerOffset.x + scrollLeft,
+        y: pos.y + this.pointerOffset.y + scrollTop,
       },
       mouse: {
+        x: pos.x + scrollLeft,
+        y: pos.y + scrollTop
+      },
+      unscrolled: {
         x: pos.x,
         y: pos.y
       }
@@ -270,7 +279,7 @@ export class DragContext extends React.Component<DragContextProps, {}> {
 
   render() {
     return (
-      <div {...this.props.css} onMouseLeave={this.drop}>
+      <div {...this.props.css}>
         <div onMouseMove={this.move}
           ref={(r) => {
             if (!r) return;
@@ -283,7 +292,6 @@ export class DragContext extends React.Component<DragContextProps, {}> {
             {this.state.dragee && this.state.dragee()}
           </div>
         </div>
-
         {this.props.children}
 
       </div>

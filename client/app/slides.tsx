@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TitleAndText } from 'presentation/title-and-text/title-and-text';
 import { TitleAndBigText } from 'presentation/title-and-big-text/title-and-big-text';
 import { ActivationDemo } from 'demos/activation/activation-demo';
+import { DropDemo } from 'demos/dropping/dropping-demo';
 import { JustText } from 'presentation/just-text/just-text.component';
 import { ImageAndText } from 'presentation/image-and-text/image-and-text';
 const canIUse: string = require('./caniuse.png');
@@ -437,6 +438,18 @@ const slides: Slide[] = [
     secondaryArguments: {
       title: "",
       text: "This is NOT the Agile Process™; these prototype-test iterations might last 30 minutes."
+    }
+  },
+  {
+    presentationComponent: DropDemo,
+    presentationArguments: {
+      title: "Drop strategy",
+      locationStrategy: "mouse"
+    },
+    secondaryComponent: DropDemo,
+    secondaryArguments: {
+      title: "Drop strategy",
+      locationStrategy: "mouse"
     }
   },
   {
