@@ -1,4 +1,4 @@
-# Trajectory Frontend
+# Drag Drop Frontend
 
 ## Setup
 
