@@ -7,7 +7,7 @@ export interface ImageAndTextProps { image: string, text: JSX.Element, hacked?: 
 export class ImageAndText extends React.Component<ImageAndTextProps, {}> {
   render() {
     return (
-      <div {...style.slide} {...(this.props.hacked && style.hacked)}>
+      <div {...style.slide}>
         <img {...style.image} src={this.props.image} />
         <div {...style.text}>
           {this.props.text}

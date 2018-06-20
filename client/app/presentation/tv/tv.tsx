@@ -10,7 +10,7 @@ export class TV extends React.Component<TVProps, {}> {
   setRef = (r: HTMLCanvasElement) => {
     this.canvas = r;
     if (!this.canvas) return;
-    this.context = this.canvas.getContext("gl") || this.canvas.getContext("2d")
+    this.context = this.canvas.getContext("2d")
   }
 
   componentDidMount() {

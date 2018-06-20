@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { styles, css } from 'styles/css';
+import { styles } from 'styles/css';
 import { DragContext } from 'drag-drop/drag-context';
 import { DropDragee } from './drop-dragee';
 import { observable } from 'mobx';
