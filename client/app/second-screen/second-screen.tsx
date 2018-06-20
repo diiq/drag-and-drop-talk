@@ -25,7 +25,7 @@ export class SecondScreen extends React.Component<SecondScreenProps, {}> {
       var component = React.createElement(componentClass, args)
     }
 
-    return <div {...style.slide}>
+    return <div {...style.slide} {...(this.state.slideIndex >= 0 && !state.unhacked && style.hacked)}>
       {this.state.slideIndex < 0 && <Spinner />}
       {this.state.slideIndex >= 0 && component}
     </div>
@@ -40,5 +40,10 @@ const style = styles({
     left: 0,
     bottom: 0,
     right: 0
+  },
+  hacked: {
+    backgroundColor: '#000',
+    color: "#0F0",
+    fontFamily: "monospace"
   }
 })

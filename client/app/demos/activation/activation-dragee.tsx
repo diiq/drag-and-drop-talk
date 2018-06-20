@@ -25,13 +25,13 @@ export class ActivationDragee extends React.PureComponent<ActivationDrageeProps,
 
 const style = styles({
   gap: {
-    width: 300,
     height: 100,
     margin: 4,
   },
   item: {
     fontSize: 20,
-    width: 300,
+    width: 'calc(100vw - 40px)',
+    maxWidth: 400,
     height: 100,
     padding: 20,
     margin: '4px 0',

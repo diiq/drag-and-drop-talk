@@ -42,8 +42,8 @@ const style = styles({
     textAlign: 'right',
     maxWidth: '70%',
     '@media(max-width:600px)': {
-      maxWidth: '90%',
-      fontSize: 30,
+      maxWidth: '100%',
+      fontSize: 20,
     }
   }
 })

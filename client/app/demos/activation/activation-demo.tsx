@@ -37,8 +37,8 @@ export class ActivationDemo extends React.PureComponent<ActivationDemoProps, {}>
 const style = styles({
   slide: {
     margin: '0 auto',
-    maxWidth: 320,
-    padding: 10,
+    maxWidth: 440,
+    padding: 20,
   },
   title: {
     fontSize: 40,

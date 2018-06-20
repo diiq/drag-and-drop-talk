@@ -5,6 +5,8 @@ import { ActivationDemo } from 'demos/activation/activation-demo';
 import { DropDemo } from 'demos/dropping/dropping-demo';
 import { JustText } from 'presentation/just-text/just-text.component';
 import { ImageAndText } from 'presentation/image-and-text/image-and-text';
+import { TV } from 'presentation/tv/tv';
+import { Connecting } from 'presentation/connecting/connecting';
 const canIUse: string = require('./caniuse.png');
 
 interface Slide {
@@ -12,6 +14,7 @@ interface Slide {
   presentationArguments: {},
   secondaryComponent: React.ComponentClass<{}>
   secondaryArguments: {}
+  unhacked?: boolean
 }
 
 const slides: Slide[] = [
@@ -23,10 +26,36 @@ const slides: Slide[] = [
 
       <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
     },
-    secondaryComponent: TitleAndText,
+    secondaryComponent: Connecting,
     secondaryArguments: {
-      title: "You're connected!",
-      text: ""
+      text: "Waiting for talk to start..."
+    },
+    unhacked: true
+  },
+  {
+    presentationComponent: TitleAndText,
+    presentationArguments: {
+      title: <div>It’s kind of <br />a drag</div>,
+      text: <div><p>Get out your phone, tablet, or laptop, and visit <strong>talks.sambleckley.com</strong> for live secondary content.</p>
+
+      <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
+    },
+    secondaryComponent: Connecting,
+    secondaryArguments: {
+      text: "Connecting..."
+    },
+    unhacked: true
+  },
+  {
+    presentationComponent: TitleAndText,
+    presentationArguments: {
+      title: <div>It’s kind of <br />a drag</div>,
+      text: <div><p>Get out your phone, tablet, or laptop, and visit <strong>talks.sambleckley.com</strong> for live secondary content.</p>
+
+      <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
+    },
+    secondaryComponent: TV,
+    secondaryArguments: {
     }
   },
   {
@@ -40,8 +69,9 @@ const slides: Slide[] = [
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {
-      title: "You're connected!",
-      text: "Don't tell Sam, but I've hijacked this demo screen part of his talk."
+      title: "",
+      hacked: true,
+      text: "Don't tell Sam! I've hijacked his talk."
     }
   },
   // TODO ADD HIJACK COMPONENT https://codepen.io/alenaksu/pen/dGjeMZ
@@ -256,14 +286,13 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div></div>
+      text: <div>What a bore.</div>
     }
   },
   {
-    presentationComponent: TitleAndBigText,
+    presentationComponent: TitleAndText,
     presentationArguments: {
-      title: "Just use HTML5 Drag events",
-      text: "...right?"
+      title: "Drag activation"
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {
@@ -272,9 +301,10 @@ const slides: Slide[] = [
     }
   },
   {
-    presentationComponent: TitleAndText,
+    presentationComponent: TitleAndBigText,
     presentationArguments: {
-      title: "Drag activation"
+      title: "Just use HTML5 Drag events",
+      text: "...right?"
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {
@@ -291,7 +321,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "By which I mean, he's lying by pretending like the observation happened first, and only then did this technical work began."
+      text: "By which I mean, he's lying by pretending like the observation happened first, and only then did this technical work begin."
     }
   },
   {
@@ -313,7 +343,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div>A prototype is an <em>experiment, designed to answer a question</em>; such as 'what activation strategy is most suitable'. (What a bore)</div>
+      text: <div>A prototype is an <em>experiment, designed to answer a question</em>; such as 'what activation strategy is most suitable'.</div>
     }
   },
   {
@@ -328,7 +358,8 @@ const slides: Slide[] = [
       title: "Instant activation",
       mouseStrategy: "instant",
       touchStrategy: "instant"
-    }
+    },
+    unhacked: true
   },
   {
     presentationComponent: TitleAndText,
@@ -353,7 +384,8 @@ const slides: Slide[] = [
       title: "Time-based activation",
       mouseStrategy: "waitForTime",
       touchStrategy: "waitForTime"
-    }
+    },
+    unhacked: true
   },
   {
     presentationComponent: TitleAndText,
@@ -378,7 +410,8 @@ const slides: Slide[] = [
       title: "Mixed strategy activation",
       mouseStrategy: "instant",
       touchStrategy: "waitForTime"
-    }
+    },
+    unhacked: true
   },
   {
     presentationComponent: TitleAndBigText,
@@ -392,7 +425,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "Building prototypes and observing users are the lub and dub of the same heartbeat; they don't happen strictly once, or in strict order"
+      text: "Building prototypes and observing users are the lub and dub of the same heartbeat; they don't happen strictly once, or in strict order, but over and over again."
     }
   },
   {
@@ -406,22 +439,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "The answer to most subtle ux questions is: try it!"
-    }
-  },
-  {
-    presentationComponent: TitleAndBigText,
-    presentationArguments: {
-      title: "Where is it?",
-      text: <ul><li>The top left corner?</li>
-      <li>The centroid?</li>
-      <li>The mouse location?</li>
-      </ul>
-    },
-    secondaryComponent: TitleAndText,
-    secondaryArguments: {
-      title: "",
-      text: "...and faster you can try variations, the more refined your eventual choice will be."
+      text: "The answer to most subtle ux questions is: try it! And the faster you can try variations, the more refined your eventual choice will be."
     }
   },
   {
@@ -443,14 +461,41 @@ const slides: Slide[] = [
   {
     presentationComponent: DropDemo,
     presentationArguments: {
-      title: "Drop strategy",
+      title: "Positioning: top left corner",
+      locationStrategy: "topLeft"
+    },
+    secondaryComponent: DropDemo,
+    secondaryArguments: {
+      title: "Positioning: top left corner",
+      locationStrategy: "topLeft"
+    },
+    unhacked: true
+  },
+  {
+    presentationComponent: DropDemo,
+    presentationArguments: {
+      title: "Positioning: centroid",
+      locationStrategy: "centroid"
+    },
+    secondaryComponent: DropDemo,
+    secondaryArguments: {
+      title: "Positioning: centroid",
+      locationStrategy: "centroid"
+    },
+    unhacked: true
+  },
+  {
+    presentationComponent: DropDemo,
+    presentationArguments: {
+      title: "Positioning: mouse",
       locationStrategy: "mouse"
     },
     secondaryComponent: DropDemo,
     secondaryArguments: {
-      title: "Drop strategy",
+      title: "Positioning: mouse",
       locationStrategy: "mouse"
-    }
+    },
+    unhacked: true
   },
   {
     presentationComponent: TitleAndText,
@@ -461,7 +506,19 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div>(I <em>told</em> you complications would follow)</div>
+      text: <div></div>
+    }
+  },
+  {
+    presentationComponent: TitleAndText,
+    presentationArguments: {
+      title: "Accessibility",
+      text: ""
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: <div>Again, the linear order of Sam's talk is leading him to lie. Don't think about accessibility last. Think about it throughout.</div>
     }
   },
 ];

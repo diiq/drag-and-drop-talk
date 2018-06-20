@@ -8,7 +8,7 @@ export interface SpinnerProps {
 
 export class Spinner extends React.Component<SpinnerProps, {}> {
   render() {
-    return <div {...style.uilEllipsis} style={{ transform: 'scale(0.49)' }}>
+    return <div {...style.uilEllipsis}>
       <div {...style.ib}>
         <div {...css(style.circle, style.first) }>
           <div></div>
@@ -39,25 +39,25 @@ const anim = keyframes({
     left: 0,
   },
   '37.5%': {
-    left: 70,
+    left: 35,
   },
   '50%': {
-    left: 70,
+    left: 35,
   },
   '62.5%': {
-    left: 140,
+    left: 70,
   },
   '75%': {
-    left: 140,
+    left: 70,
     transform: 'scale(1)',
   },
   '87.5%': {
-    left: 140,
+    left: 70,
     transform: 'scale(0)',
     opacity: 1
   },
   '100%': {
-    left: 140,
+    left: 70,
     opacity: 0
   }
 });
@@ -66,8 +66,8 @@ let style = styles({
   uilEllipsis: {
     background: 'none',
     position: 'relative',
-    width: 200,
-    height: 200,
+    width: 100,
+    height: 100,
     margin: '0 auto',
   },
   ib: {
@@ -76,17 +76,17 @@ let style = styles({
     transform: 'rotate(0deg)'
   },
   circle: {
-    width: 60,
-    height: 60,
+    width: 30,
+    height: 30,
     position: 'absolute',
-    top: 70,
+    top: 35,
     opacity: 0,
     textAlign: 'center',
     animation: `${anim} 4s linear infinite`,
 
     '> div': {
-      width: 60,
-      height: 60,
+      width: 30,
+      height: 30,
       borderRadius: 30,
       margin: 0,
     },

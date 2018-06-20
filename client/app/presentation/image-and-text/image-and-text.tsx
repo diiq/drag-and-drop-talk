@@ -2,12 +2,12 @@
 import * as React from 'react';
 import { styles } from 'styles/css';
 
-export interface ImageAndTextProps { image: string, text: JSX.Element };
+export interface ImageAndTextProps { image: string, text: JSX.Element, hacked?: boolean };
 
 export class ImageAndText extends React.Component<ImageAndTextProps, {}> {
   render() {
     return (
-      <div {...style.slide}>
+      <div {...style.slide} {...(this.props.hacked && style.hacked)}>
         <img {...style.image} src={this.props.image} />
         <div {...style.text}>
           {this.props.text}
@@ -31,7 +31,9 @@ const style = styles({
     }
   },
   image: {
-    maxHeight: "70%"
+    maxHeight: "100%",
+    maxWidth: '100%',
+    margin: '0 auto'
   },
   text: {
     fontSize: 30,
