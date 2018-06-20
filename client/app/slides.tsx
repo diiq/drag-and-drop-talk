@@ -7,6 +7,7 @@ import { JustText } from 'presentation/just-text/just-text.component';
 import { ImageAndText } from 'presentation/image-and-text/image-and-text';
 import { TV } from 'presentation/tv/tv';
 import { Connecting } from 'presentation/connecting/connecting';
+import { AccessibilityDemo } from 'demos/accessibility/accessibility-demo';
 const canIUse: string = require('./caniuse.png');
 
 interface Slide {
@@ -59,7 +60,6 @@ const slides: Slide[] = [
     }
   },
   {
-    // TODO ADD TITLE CROSS OUT COMPONENT
     presentationComponent: TitleAndText,
     presentationArguments: {
       title: <div>It’s kind of <br />a drag</div>,
@@ -74,7 +74,6 @@ const slides: Slide[] = [
       text: "Don't tell Sam! I've hijacked his talk."
     }
   },
-  // TODO ADD HIJACK COMPONENT https://codepen.io/alenaksu/pen/dGjeMZ
   {
     presentationComponent: TitleAndText,
     presentationArguments: {
@@ -498,15 +497,27 @@ const slides: Slide[] = [
     unhacked: true
   },
   {
-    presentationComponent: TitleAndText,
+    presentationComponent: TitleAndBigText,
     presentationArguments: {
-      title: "Motion",
-      text: ""
+      title: "Motion:",
+      text: "Your framework isn't fast enough."
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div></div>
+      text: <div>With all these demos, the bastard won't let me get a word in edgewise. Typical.</div>
+    }
+  },
+  {
+    presentationComponent: TitleAndBigText,
+    presentationArguments: {
+      title: "Motion",
+      text: "Use Plain Old Javascript™ and GPU-accelerated CSS."
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: <div>One moral: to have complete control of a framework, you need to know about one or two layers of abstraction below it. Don't just know your framework, know the language and the compiler/interpreter that language runs on.</div>
     }
   },
   {
@@ -518,7 +529,89 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div>Again, the linear order of Sam's talk is leading him to lie. Don't think about accessibility last. Think about it throughout.</div>
+      text: <div>Again, the linear order of Sam's talk is leading him to lie. Don't think about accessibility last.</div>
+    }
+  },
+  {
+    presentationComponent: TitleAndBigText,
+    presentationArguments: {
+      title: "Accessibility",
+      text: "Cut-and-paste as a metaphor"
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: <div>You can't leave it 'till the end. If it is a technical afterthought, it will seem so difficult that it will never get done.</div>
+    }
+  },
+  {
+    presentationComponent: AccessibilityDemo,
+    presentationArguments: {
+      title: "Accessibility",
+    },
+    secondaryComponent: AccessibilityDemo,
+    secondaryArguments: {
+      title: "Accessibility",
+    },
+    unhacked: true
+  },
+  {
+    presentationComponent: TitleAndText,
+    presentationArguments: {
+      title: "Take-Homes",
+      text: ""
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: <div>Prepare to roll your eyes as Sam Misses The Point</div>
+    }
+  },
+  {
+    presentationComponent: JustText,
+    presentationArguments: {
+      text: <div>
+        <p>1. Use a library if you can.</p>
+
+        <p>2. A single strategy will never fully serve both mouse and finger.</p>
+
+        <p>3. If it needs to be smooth, make use of the GPU.</p>
+
+        <p>4. Accessible interactions are good for everyone.</p>
+      </div>
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: <div>The REAL take-homes are:
+        <p>1. Pick your battles; what interactions are central to the project?</p>
+
+        <p>2. Don't design and then develop. They're inseperable.</p>
+
+        <p>3. Know your tech and also the tech beneath it.</p>
+
+        <p>4. Accessible interactions are good for everyone. Plan them in from the get-go.</p>
+      </div>
+    }
+  },
+  {
+    presentationComponent: TitleAndText,
+    presentationArguments: {
+      title: "Thank You",
+      text: "Please say hi, ask questions, ask me if I'm a truck in the hall."
+    },
+    secondaryComponent: TitleAndText,
+    secondaryArguments: {
+      title: "",
+      text: <div>The REAL take-homes are:
+        <p>1. Pick your battles; what interactions are central to the project?</p>
+
+        <p>2. Don't design and then develop. They're inseperable.</p>
+
+        <p>3. Know your tech and also the tech beneath it.</p>
+
+        <p>4. Accessible interactions are good for everyone. Plan them in from the get-go.</p>
+      </div>
     }
   },
 ];

@@ -41,6 +41,10 @@ const style = styles({
     marginLeft: 'auto',
     textAlign: 'right',
     maxWidth: '70%',
+    '@media(max-width:800px)': {
+      maxWidth: '100%',
+      fontSize: 24,
+    },
     '@media(max-width:600px)': {
       maxWidth: '100%',
       fontSize: 20,

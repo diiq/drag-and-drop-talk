@@ -25,7 +25,7 @@ export class SecondScreen extends React.Component<SecondScreenProps, {}> {
       var component = React.createElement(componentClass, args)
     }
 
-    return <div {...style.slide} {...(this.state.slideIndex >= 0 && !state.unhacked && style.hacked)}>
+    return <div {...style.slide} {...(state && !state.unhacked && style.hacked)}>
       {this.state.slideIndex < 0 && <Spinner />}
       {this.state.slideIndex >= 0 && component}
     </div>
