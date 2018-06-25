@@ -148,7 +148,7 @@ export class AccessibilityDemo extends React.Component<AccessibilityDemoProps, {
           <DragContext contextName="demo" yScroller={() => document.getElementById("scroller")}>
             <div {...style.slide}>
               <h2 {...style.title}>{this.props.title}</h2>
-              {this.sortedEvents().map((event, i) => <AccessibleDragee focused={i == this.state.focused} key={event.text} item={event} {...this.props} previousOrder={this.previousOrder(i)} />)}
+              {this.sortedEvents().map((event, i) => <AccessibleDragee focused={i == this.state.focused} moving={i == this.state.focused && this.state.moving} key={event.text} item={event} {...this.props} previousOrder={this.previousOrder(i)} />)}
             </div>
           </DragContext>
           <div role="alert" {...style.alert}>{this.motionMessage()}</div>

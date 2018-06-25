@@ -49,6 +49,7 @@ npm manifest:
       "mobx": "^3.1.10",
       "mobx-react": "^4.2.1",
       "moment": "^2.18.1",
+      "nosleep.js": "^0.7.0",
       "prop-types": "^15.5.8",
       "react": "^16",
       "react-dom": "^16",
@@ -4415,6 +4416,10 @@ Lockfile:
       prepend-http "^1.0.0"
       query-string "^4.1.0"
       sort-keys "^1.0.0"
+  
+  nosleep.js@^0.7.0:
+    version "0.7.0"
+    resolved "https://registry.yarnpkg.com/nosleep.js/-/nosleep.js-0.7.0.tgz#cfd919c25523ca0d0f4a69fb3305c083adaee289"
   
   npm-run-path@^2.0.0:
     version "2.0.2"

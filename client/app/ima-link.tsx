@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 // import { StateJSON, StateService } from 'state/state';
 
 import { styles } from 'styles/css';
-import { Link } from 'link/link';
+import { Button } from 'button/button';
 
 
 
@@ -14,7 +14,7 @@ export class ImaLink extends React.Component<ImaLinkProps, {}> {
   render() {
     return <div {...style.slide}>
       <p>There's nothing here, this page is just here to prove that each item is a link.</p>
-      <Link to="/">&lt; Back</Link>
+      <Button action={() => window.history.back()}>&lt; Back</Button>
     </div>;
   }
 }

@@ -8,6 +8,7 @@ import { ImageAndText } from 'presentation/image-and-text/image-and-text';
 import { TV } from 'presentation/tv/tv';
 import { Connecting } from 'presentation/connecting/connecting';
 import { AccessibilityDemo } from 'demos/accessibility/accessibility-demo';
+import { Preconnect } from 'presentation/connecting/preconnect';
 const canIUse: string = require('./caniuse.png');
 
 interface Slide {
@@ -24,10 +25,10 @@ const slides: Slide[] = [
     presentationArguments: {
       title: <div>It’s kind of <br />a drag</div>,
       text: <div><p>Get out your phone, tablet, or laptop, and visit <strong>talks.sambleckley.com</strong> for live secondary content.</p>
-
+      <p>Calvin Guest is the free WiFi SSID.</p>
       <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
     },
-    secondaryComponent: Connecting,
+    secondaryComponent: Preconnect,
     secondaryArguments: {
       text: "Waiting for talk to start..."
     },
@@ -38,41 +39,15 @@ const slides: Slide[] = [
     presentationArguments: {
       title: <div>It’s kind of <br />a drag</div>,
       text: <div><p>Get out your phone, tablet, or laptop, and visit <strong>talks.sambleckley.com</strong> for live secondary content.</p>
-
+      <p>Calvin Guest is the free WiFi SSID.</p>
       <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
     },
     secondaryComponent: Connecting,
     secondaryArguments: {
-      text: "Connecting..."
+      text: "Connecting...",
+      hackedText: "Don't tell Sam! I've hijacked his talk."
     },
     unhacked: true
-  },
-  {
-    presentationComponent: TitleAndText,
-    presentationArguments: {
-      title: <div>It’s kind of <br />a drag</div>,
-      text: <div><p>Get out your phone, tablet, or laptop, and visit <strong>talks.sambleckley.com</strong> for live secondary content.</p>
-
-      <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
-    },
-    secondaryComponent: TV,
-    secondaryArguments: {
-    }
-  },
-  {
-    presentationComponent: TitleAndText,
-    presentationArguments: {
-      title: <div>It’s kind of <br />a drag</div>,
-      text: <div><p>Get out your phone, tablet, or laptop, and visit <strong>talks.sambleckley.com</strong> for live secondary content.</p>
-
-      <p>Didn’t bring a device? Make friends with your neighbor, and look at theirs!</p></div>
-    },
-    secondaryComponent: TitleAndText,
-    secondaryArguments: {
-      title: "",
-      hacked: true,
-      text: "Don't tell Sam! I've hijacked his talk."
-    }
   },
   {
     presentationComponent: TitleAndText,
@@ -89,7 +64,7 @@ const slides: Slide[] = [
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {
-      text: "He's Sam. I'm Sam's subconscious. He's a real dork, am I right?"
+      text: <div>He's Sam.<br />I'm Sam's subconscious.<br />He's a real dork, am I right?</div>
     }
   },
 
@@ -296,7 +271,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "He's telling an implicit lie, here;"
+      text: "He's telling a lie, here;"
     }
   },
   {
@@ -308,7 +283,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "By which I mean, he's lying by pretending like the observation happened first, and only then did this technical work began."
+      text: "By which I mean, he's lying by pretending like the observation happened first, and only then did this technical work begin."
     }
   },
   {
@@ -320,7 +295,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "By which I mean, he's lying by pretending like the observation happened first, and only then did this technical work begin."
+      text: <div>Design <em>and then</em> develop is simply not how this work got done.</div>
     }
   },
   {
@@ -331,7 +306,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "And as soon as he realized there were options - even before the observation of users - he started building a prototype."
+      text: "And as soon as Sam realized there were options - even before the observation of users - he started building prototypes."
     }
   },
   {
@@ -342,8 +317,16 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div>A prototype is an <em>experiment, designed to answer a question</em>; such as 'what activation strategy is most suitable'.</div>
+      text: <div>A prototype is an <em>experiment, designed to answer a question</em> such as 'what activation strategy is most suitable?'</div>
     }
+  },
+  {
+    presentationComponent: TitleAndText,
+    presentationArguments: {
+      title: "Instant activation"
+    },
+    secondaryComponent: TV,
+    secondaryArguments: {}
   },
   {
     presentationComponent: ActivationDemo,
@@ -368,7 +351,7 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: <div>As an experiment, a prototype must have modular spaces to test variants; switching back and forth between variations should be <em>fast</em> and <em>easy</em>.</div>
+      text: <div>Because it is an experiment, a prototype should be modular; switching back and forth between testable variations should be <em>fast</em> and <em>easy</em>.</div>
     }
   },
   {
@@ -424,15 +407,15 @@ const slides: Slide[] = [
     secondaryComponent: TitleAndText,
     secondaryArguments: {
       title: "",
-      text: "Building prototypes and observing users are the lub and dub of the same heartbeat; they don't happen strictly once, or in strict order, but over and over again."
+      text: <div><em>Building prototypes</em> and <em>observing users</em> are just the lub and dub one heartbeat; they don't happen strictly once, or in strict order, but over and over again.</div>
     }
   },
   {
     presentationComponent: TitleAndBigText,
     presentationArguments: {
       title: "Dropping",
-      text: <ul><li>where is <del>the beat</del> the dragee?</li>
-      <li>what do we do when it drops?</li>
+      text: <ul><li>where is the dragee?</li>
+      <li>what do we do when <del>the beat</del> the dragee drops?</li>
       </ul>
     },
     secondaryComponent: TitleAndText,
@@ -445,11 +428,7 @@ const slides: Slide[] = [
     presentationComponent: TitleAndBigText,
     presentationArguments: {
       title: "Where is it?",
-      text: <ul>
-        <li>The top left corner?</li>
-        <li>The centroid?</li>
-        <li>The mouse location?</li>
-      </ul>
+      text: ""
     },
     secondaryComponent: TitleAndText,
     secondaryArguments: {
@@ -495,6 +474,15 @@ const slides: Slide[] = [
       locationStrategy: "mouse"
     },
     unhacked: true
+  },
+  {
+    presentationComponent: TitleAndBigText,
+    presentationArguments: {
+      title: "Motion:",
+      text: "Your framework isn't fast enough."
+    },
+    secondaryComponent: TV,
+    secondaryArguments: {}
   },
   {
     presentationComponent: TitleAndBigText,
@@ -586,33 +574,34 @@ const slides: Slide[] = [
       text: <div>The REAL take-homes are:
         <p>1. Pick your battles; what interactions are central to the project?</p>
 
-        <p>2. Don't design and then develop. They're inseperable.</p>
+        <p>2. Don't design <em>and then</em> develop, particularly while prototyping.</p>
 
-        <p>3. Know your tech and also the tech beneath it.</p>
+        <p>3. Know your tech and also the tech underlying it.</p>
 
-        <p>4. Accessible interactions are good for everyone. Plan them in from the get-go.</p>
+        <p>4. Plan accessibility in from the get-go.</p>
       </div>
     }
   },
   {
-    presentationComponent: TitleAndText,
+    presentationComponent: TitleAndBigText,
     presentationArguments: {
       title: "Thank You",
-      text: "Please say hi, ask questions, ask me if I'm a truck in the hall."
-    },
-    secondaryComponent: TitleAndText,
-    secondaryArguments: {
-      title: "",
-      text: <div>The REAL take-homes are:
-        <p>1. Pick your battles; what interactions are central to the project?</p>
+      text: <div>Feel free to ask questions, say hi, or ask me if I'm a truck out in the hall.
+        <p>Sam Bleckley<br />
+        Software Engineer, Designer, and Consultant
+        </p>
 
-        <p>2. Don't design and then develop. They're inseperable.</p>
-
-        <p>3. Know your tech and also the tech beneath it.</p>
-
-        <p>4. Accessible interactions are good for everyone. Plan them in from the get-go.</p>
+        <p><strong>sambleckley.com</strong><br />
+        <strong>sam@sambleckley.com</strong><br />
+        <strong>@diiq</strong> on Twitter</p>
+        <p>The slides, demos, and code used in this presentation are available at https://github.com/diiq/drag-and-drop-talk</p>
       </div>
-    }
+    },
+    secondaryComponent: Preconnect,
+    secondaryArguments: {
+      text: "Talk has ended."
+    },
+    unhacked: true
   },
 ];
 

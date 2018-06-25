@@ -2,7 +2,7 @@
 require('font-awesome/css/font-awesome.min.css');
 require('react-select/dist/react-select.css');
 require('styles/base.css');
-var NoSleep = require('nosleep.js')
+
 
 import * as React from 'react';
 import { routes } from 'routes';
@@ -42,18 +42,6 @@ export class App extends React.Component<AppProps, {}> {
     );
   }
 }
-
-var noSleep = new NoSleep();
-
-function enableNoSleep() {
-  noSleep.enable();
-  document.removeEventListener('click', enableNoSleep, false);
-}
-
-// Enable wake lock.
-// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-document.addEventListener('click', enableNoSleep, false);
-
 
 const style = styles({
   error: {

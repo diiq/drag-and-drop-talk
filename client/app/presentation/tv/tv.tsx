@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styles } from 'styles/css';
 
-export interface TVProps { title: JSX.Element, text: JSX.Element };
+export interface TVProps { };
 
 export class TV extends React.Component<TVProps, {}> {
   canvas: HTMLCanvasElement

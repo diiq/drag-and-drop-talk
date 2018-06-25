@@ -27,10 +27,10 @@ export interface Scroller {
 }
 
 export function perimeterScroller(xScrollable: Scrollable, yScrollable: Scrollable): Scroller {
-  var autoscrollInterval: NodeJS.Timer;
+  var autoscrollInterval: NodeJS.Timer | number;
   function stop() {
     if (autoscrollInterval) {
-      clearInterval(autoscrollInterval as NodeJS.Timer);
+      clearInterval(autoscrollInterval as number);
       autoscrollInterval = null;
     }
     return;
@@ -58,7 +58,7 @@ export function perimeterScroller(xScrollable: Scrollable, yScrollable: Scrollab
       const dx = speedGivenLocation(xScrollable.clientWidth - x) || -speedGivenLocation(x);
 
       if (autoscrollInterval) {
-        clearInterval(autoscrollInterval);
+        clearInterval(autoscrollInterval as number);
         autoscrollInterval = null;
       }
 

@@ -5,6 +5,7 @@ import { Draggable, fastMove } from 'drag-drop';
 import { vars } from 'styles/css';
 import { Link } from 'link/link';
 import { DragActor } from 'drag-drop/drag-actor';
+import { css } from 'glamor';
 
 export interface AccessibleDrageeProps {
   item: {
@@ -13,6 +14,7 @@ export interface AccessibleDrageeProps {
   }
   previousOrder: number
   focused: boolean
+  moving: boolean
   locationStrategy: "topLeft" | "centroid" | "mouse",
 };
 
@@ -65,7 +67,6 @@ export class AccessibleDragee extends React.PureComponent<AccessibleDrageeProps,
   }
 
   render() {
-    console.log(this.props.focused)
     return (
        <DragActor
           contextName={"demo"}
@@ -75,7 +76,7 @@ export class AccessibleDragee extends React.PureComponent<AccessibleDrageeProps,
           fastUpdate={this.fastMove}
           dragStop={this.stopDrag}>
           <Draggable contextName="demo" monitor={{order: this.props.item.order}} onDrop={this.dropUpdate} touchStrategy={"waitForTime"} mouseStrategy={"instant"}>
-            <Link focused={this.props.focused} to="ima-link" css={style.item}>{this.props.item.text}</Link>
+            <Link focused={this.props.focused} to="ima-link" css={css([style.item, this.props.moving && style.moving])}>{this.props.item.text}</Link>
           </Draggable>
         </DragActor>
     );
@@ -104,5 +105,13 @@ const style = styles({
       boxShadow: vars.shadow.deepShadow,
       zIndex: 1
     }
+  },
+  moving: {
+    opacity: 0.5,
+    border: "1px dashed #ddd",
+    boxShadow: "none",
+    ':focus': {
+      boxShadow: 'none'
+    },
   }
 })
