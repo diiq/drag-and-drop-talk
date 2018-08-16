@@ -1,0 +1,28 @@
+Arguments: 
+  /usr/local/Cellar/node/10.7.0/bin/node /Users/diiq/.yarn/bin/yarn.js remove esdragon
+
+PATH: 
+  /Users/diiq/.yarn/bin:/Users/diiq/.config/yarn/global/node_modules/.bin:/Users/diiq/.rbenv/shims:/Users/diiq/.pyenv/shims:/usr/local/Cellar/node/8.0.0_1/bin:/Users/diiq/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Applications/Wireshark.app/Contents/MacOS:/usr/local/Cellar/node/8.0.0_1/bin:/Users/diiq/.rbenv/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  10.7.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: No lockfile in this directory. Run `yarn install` to generate one.
+      at new MessageError (/Users/diiq/.yarn/lib/cli.js:186:110)
+      at /Users/diiq/.yarn/lib/cli.js:89389:13

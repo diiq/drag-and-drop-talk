@@ -43,7 +43,8 @@
     "react-select": "^1.0.0-rc.10",
     "react-transition-group": "2.3.0-beta.0",
     "scrollparent": "^2.0.1",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "esdragon": "^1.0.0"
   },
   "devDependencies": {
     "@types/actioncable": "^0.0.2",

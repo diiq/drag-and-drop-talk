@@ -1887,6 +1887,10 @@ escodegen@^1.6.1:
   optionalDependencies:
     source-map "~0.5.6"
 
+esdragon@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/esdragon/-/esdragon-1.0.1.tgz#31c2b4b67f23162e7db4e9b76327bcd07a7d2d72"
+
 esprima@^2.6.0:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"

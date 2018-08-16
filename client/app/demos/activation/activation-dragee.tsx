@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { styles } from 'styles/css';
-import { Draggable } from 'drag-drop/draggable';
+import { Draggable } from 'esdragon';
 import { vars } from 'styles/css';
 import { Link } from 'link/link';
 

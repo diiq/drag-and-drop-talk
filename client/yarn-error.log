@@ -1,14 +1,14 @@
 Arguments: 
-  /usr/local/Cellar/node/8.9.1/bin/node /Users/diiq/.yarn/bin/yarn.js run build
+  /usr/local/Cellar/node/10.7.0/bin/node /Users/diiq/.yarn/bin/yarn.js install
 
 PATH: 
-  /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/diiq/code/drag_drop_talk/client/node_modules/.bin:/Users/diiq/.yarn/bin:/Users/diiq/.config/yarn/global/node_modules/.bin:/Users/diiq/.rbenv/shims:/Users/diiq/.pyenv/shims:/usr/local/Cellar/node/8.0.0_1/bin:/Users/diiq/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/share/dotnet:/Applications/Wireshark.app/Contents/MacOS:/usr/local/Cellar/node/8.0.0_1/bin:/Users/diiq/.rbenv/bin
+  /Users/diiq/.yarn/bin:/Users/diiq/.config/yarn/global/node_modules/.bin:/Users/diiq/.rbenv/shims:/Users/diiq/.pyenv/shims:/usr/local/Cellar/node/8.0.0_1/bin:/Users/diiq/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Applications/Wireshark.app/Contents/MacOS:/usr/local/Cellar/node/8.0.0_1/bin:/Users/diiq/.rbenv/bin
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  8.9.1
+  10.7.0
 
 Platform: 
   darwin x64
@@ -59,7 +59,8 @@ npm manifest:
       "react-select": "^1.0.0-rc.10",
       "react-transition-group": "2.3.0-beta.0",
       "scrollparent": "^2.0.1",
-      "uuid": "^3.2.1"
+      "uuid": "^3.2.1",
+      //"esdragon": "file:../../esdragon"
     },
     "devDependencies": {
       "@types/actioncable": "^0.0.2",
@@ -2028,6 +2029,9 @@ Lockfile:
       optionator "^0.8.1"
     optionalDependencies:
       source-map "~0.5.6"
+  
+  "esdragon@file:../../esdragon":
+    version "1.0.0"
   
   esprima@^2.6.0:
     version "2.7.3"
@@ -7122,17 +7126,9 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 2
-  Command: sh
-  Arguments: -c webpack --display-error-details --config build_scripts/webpack.config.prod.js
-  Directory: /Users/diiq/code/drag_drop_talk/client
-  Output:
-  
-      at ProcessTermError.MessageError (/Users/diiq/.yarn/lib/cli.js:186:110)
-      at new ProcessTermError (/Users/diiq/.yarn/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/Users/diiq/.yarn/lib/cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:925:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+  SyntaxError: /Users/diiq/code/drag_drop_talk/client/package.json: Unexpected token / in JSON at position 1571
+      at JSON.parse (<anonymous>)
+      at /Users/diiq/.yarn/lib/cli.js:1036:59
+      at Generator.next (<anonymous>)
+      at step (/Users/diiq/.yarn/lib/cli.js:98:30)
+      at /Users/diiq/.yarn/lib/cli.js:109:13

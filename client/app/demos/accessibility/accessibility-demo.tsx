@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { styles } from 'styles/css';
-import { DragContext } from 'drag-drop/drag-context';
+import { DragContext } from 'esdragon';
 import { AccessibleDragee } from './accessible-dragee';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';

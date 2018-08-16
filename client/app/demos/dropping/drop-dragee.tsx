@@ -1,10 +1,9 @@
 
 import * as React from 'react';
 import { styles } from 'styles/css';
-import { Draggable, fastMove } from 'drag-drop';
+import { Draggable, fastMove, DragActor } from 'esdragon';
 import { vars } from 'styles/css';
 import { Link } from 'link/link';
-import { DragActor } from 'drag-drop/drag-actor';
 
 export interface DropDrageeProps {
   item: {

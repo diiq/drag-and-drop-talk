@@ -1,7 +1,7 @@
 
 import * as React from 'react';
-import { styles, css } from 'styles/css';
-import { DragContext } from 'drag-drop/drag-context';
+import { styles } from 'styles/css';
+import { DragContext } from 'esdragon';
 import { ActivationDragee } from './activation-dragee';
 
 export interface ActivationDemoProps {
@@ -13,7 +13,7 @@ export interface ActivationDemoProps {
 export class ActivationDemo extends React.PureComponent<ActivationDemoProps, {}> {
   render() {
     return (
-      <DragContext contextName="demo" css={css({maxHeight: '100%', overflow:'auto'})}>
+      <DragContext contextName="demo" style={{maxHeight: '100%', overflow:'auto'}}>
         <div {...style.slide}>
           <h2 {...style.title}>{this.props.title}</h2>
           <ActivationDragee text="the bright green snake" {...this.props} />
